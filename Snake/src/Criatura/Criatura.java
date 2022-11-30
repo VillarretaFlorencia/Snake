@@ -14,7 +14,7 @@ import Visitores.VisitorCriatura;
 
 
 public class Criatura {
-	//protected int miDireccion;
+	protected int miDireccion;
 	protected int enReserva;
 	//protected String imagenCuerpo;
 	protected Transitable cabeza;
@@ -30,7 +30,8 @@ public class Criatura {
 	static final int ARRIBA = 2;
 	static final int ABAJO = -2;*/
 	
-	public Criatura (LinkedList <Posicion> posiciones, String imagenCabeza, String imagenCuerpo) {
+	public Criatura (int direccion, LinkedList <Posicion> posiciones, String imagenCabeza, String imagenCuerpo) {
+		miDireccion = direccion;
 		enReserva = 0;
 		miCuerpo = new LinkedList <Transitable> ();
 		Iterator <Posicion>  it = posiciones.iterator();
@@ -46,6 +47,7 @@ public class Criatura {
 		//miEstado = new EstadoNormal(this);
 		//miVisitor = new VisitorCriatura(this);
 	}
+	public void setDireccion (int direccion) {miDireccion = direccion;}
 	
 	//public void setImagenCuerpo (String imagen) {imagenCuerpo = imagen;}
 	
@@ -54,6 +56,7 @@ public class Criatura {
 	public void setVisitor() {miVisitor = new VisitorCriatura(this);}
 	
 	//public String getImagen () {return imagenCuerpo;}
+	public int getDireccion () {return miDireccion;}
 	
 	public Transitable getCabeza() {
 		return cabeza;
@@ -111,7 +114,8 @@ public class Criatura {
 		miVisitor.visit(adyacente);
 	}*/
 	
-	public void mover (Bloque adyacente) {
+	public void mover () {
+		Bloque adyacente = Juego.getAdyacente(mi_direccion, cabeza);
 		miVisitor.visitar(adyacente);
 		if (enReserva > 0) {
 			enReserva --;

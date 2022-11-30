@@ -26,7 +26,7 @@ public void ocupar() {
 
 public void desocupar() {
 	ocupado = false;
-	bloqueGrafico.getImagensuelo();
+	bloqueGrafico.getSuelo();
 	
 }
 public boolean getOcupado() {

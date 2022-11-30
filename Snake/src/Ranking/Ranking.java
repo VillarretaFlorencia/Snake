@@ -145,10 +145,26 @@ public class Ranking {
 		//sacado de: https://www.codespeedy.com/how-to-overwrite-a-file-in-java/
 	}
 	
+	public String toString() {
+		String escribir ="";
+		int i = 1;
+			for(Jugador j : jugadores) {
+				escribir = escribir+i+". "+ j.getNombre()+" - Puntaje: "+j.getPuntaje()+" \n";
+				i++;
+			}
+		return escribir;
+	}
+	
+	public LinkedList<Jugador> getListaJugadores(){
+		return jugadores;
+	}
+	
 	public static void main(String[] args) {
 		Ranking r = new Ranking();
-		Jugador jug = new Jugador("Ro",11);
+		Jugador jug = new Jugador("Stanke",21);
 		r.sobreescribir(jug);
+		System.out.println("-------------------------------");
+		System.out.println(r.toString());
 		
 	}
 	

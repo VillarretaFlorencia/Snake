@@ -11,9 +11,20 @@ public class Ventana extends JFrame {
 	static final String RANKING = "Panel del ranking";
 	
 	//Paneles <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+	PanelRanking panelRanking = new PanelRanking();
+	
 	public Ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(0, 0, 600, 600);
 	    getContentPane().setLayout(new CardLayout(0, 0));
+	    this.setResizable(false);
+	    panelRanking.setVisible(true);
+	    //añadimos los paneles al frame
+	    getContentPane().add(panelRanking,RANKING);
+	}
+	
+	public static void main(String[] args) {
+		Ventana ven = new Ventana();
+		ven.setVisible(true);
 	}
 }

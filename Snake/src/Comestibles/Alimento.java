@@ -1,4 +1,4 @@
-package comestibles;
+package Comestibles;
 
 public class Alimento {
 

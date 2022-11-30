@@ -1,5 +1,5 @@
 package Comestibles;
 
-public class Alimento {
-
+public class Alimento extends Consumibles {
+//
 }

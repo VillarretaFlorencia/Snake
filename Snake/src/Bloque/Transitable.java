@@ -11,27 +11,15 @@ public Transitable (int x , int y) {
 	ocupado=false;
 }
 
-@Override
+
 public void ocupar() {
 	ocupado=true;
 	
 }
 
-@Override
 public void desocupar() {
 	ocupado=false;
 	
 }
 
-@Override
-public Posicion getBloque() {
-	
-	return posicion;
-}
-
-@Override
-public void setBloque(Posicion posicion) {
-	this.posicion=posicion;
-	
-}
 }

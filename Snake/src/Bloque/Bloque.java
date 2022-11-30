@@ -9,14 +9,33 @@ protected BloqueGrafico bloqueGrafico;
 protected Consumible consumible;
 
 
-public abstract void ocupar();
-public abstract void desocupar();
-public abstract Posicion getBloque();
-public abstract void setBloque();
-public void setBloque(Posicion bloque);
-public  void accept (Visitor visitor);
+public Posicion getBloque() {
+	return posicion;
+}
+public BloqueGrafico getBloqueGrafico () {
+	return bloqueGrafico;
+}
+
+public void setBloqueGrafico (BloqueGrafico bloqueGrafico ) {
+	this.bloqueGrafico=bloqueGrafico;
+}
+
+public Consumible getConsumible () {
+	return consumible;
+}
+
+public void setConsumible (Consumible consumible) {
+	this.consumible=consumible;
+}
+
+public  void setBloque(Posicion pos) {
+	this.posicion=posicion;
+}
+
+public  void aceptar (Visitor visitor) {
+	 visitor.aceptar(this);
 	
 }
-
-
 }
+
+

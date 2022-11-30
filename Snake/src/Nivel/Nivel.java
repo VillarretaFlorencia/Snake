@@ -1,23 +1,25 @@
 package Nivel;
 
+
 import java.util.LinkedList;
 
 import Grilla.Grilla;
-import comestibles.Consumible;
+import Comestibles.Consumible;
 
 public class Nivel {
 
-	protected Grilla grilla = new Grilla(20,20);
+	protected Grilla grilla;
 	protected int numNivel;
 	protected LinkedList<Consumible> consumibles;
+	protected LevelReader reader = LevelReader.getLevelReader();
 	
 	public Nivel(int numNivel) {
 		this.numNivel = numNivel;
 	
-    //generamos el nivel
-    grilla = reader.buildNivel(this,numNivel);
-    consumibles = new LinkedList<>();
-    
+	    //generamos el nivel
+	    grilla = new Grilla(reader.generarGrilla(this,numNivel));
+	    consumibles = new LinkedList<>();
+	    
 	}
 }
 

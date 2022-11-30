@@ -2,11 +2,10 @@ package Juego;
 
 import Nivel.Nivel;
 
-public class Jugador{
+public class Jugador implements Comparable<Jugador>{
     private int puntaje;
     private String nombre;
     private int cronometro;
-    private Nivel nivel;
 
     public Jugador() {
     	
@@ -23,10 +22,6 @@ public class Jugador{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public void setNivel(Nivel nivel) {
-        this.nivel = nivel;
-    }
 
     public String getNombre() {
         return nombre;
@@ -37,8 +32,16 @@ public class Jugador{
     public int getPuntaje() {
         return puntaje;
     }
-    public Nivel getNivel() {
-        return nivel;
+    
+    public void copy(Jugador jugador) {
+    	this.nombre = jugador.getNombre();
+    	this.puntaje = jugador.getPuntaje();
     }
+	@Override
+	public int compareTo(Jugador o) {
+		Integer compara = o.getPuntaje();
+		compara.compareTo(puntaje);
+		return compara;
+	}
 
 }

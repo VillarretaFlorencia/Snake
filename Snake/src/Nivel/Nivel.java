@@ -8,7 +8,9 @@ import javax.swing.Popup;
 
 import Bloque.Bloque;
 import Bloque.BloqueGrafico;
+import Bloque.Transitable;
 import Grilla.Grilla;
+import Juego.Juego;
 import Posicion.Posicion;
 import Comestibles.Alimento;
 import Comestibles.Consumible;
@@ -21,6 +23,8 @@ public class Nivel {
 	protected LinkedList<Consumible> consumibles;
 	protected static LevelReader reader = LevelReader.getLevelReader();
 	protected static BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
+	protected static Juego juego = Juego.getJuego();
+	
 	
 	public Nivel(int numNivel) {
 		this.numNivel = numNivel;
@@ -57,18 +61,18 @@ public class Nivel {
 		Collections.shuffle(listaPosiciones);
 		
 		posicion = listaPosiciones.getFirst();
-		Bloque bloque;
-		bloque = grilla.getBloque(posicion.getX(),posicion.getY());
+		Transitable bloque;
+		bloque = (Transitable) grilla.getBloque(posicion.getX(),posicion.getY());
 		
 		while(bloque.getOcupado()) {
 			posicion = listaPosiciones.getFirst();
-			bloque = grilla.getBloque(posicion.getX(),posicion.getY());
+			bloque = (Transitable) grilla.getBloque(posicion.getX(),posicion.getY());
 		}
 		Consumible consumible = consumibles.getFirst();
 		bloque.setConsumible(consumible);
 		consumibles.remove(consumible);
 		
-		juego.actualizar(); //pasar posicion e imagem
+		juego.actualizar(bloque.getPosicion().getX(), bloque.getPosicion().getY(), consumible.getImagen()); //pasar posicion e imagem
 	}
 }
 

@@ -5,6 +5,7 @@ import Hilos.HiloCronometro;
 import Logica.Alimento;
 import Logica.EntidadGrafica;
 import Logica.Posicion;
+import Nivel.LevelReader;
 
 import java.util.LinkedList;
 
@@ -14,7 +15,11 @@ import Bloque.*;
 public class Juego {
 
 	protected boolean terminarJuego;
-	private static Juego nivel = new Juego();
+	private static Juego juego = new Juego();
+	  
+	public static Juego getJuego() {
+		return juego;
+	}
 
 	private Juego() {
 		terminarJuego = false;

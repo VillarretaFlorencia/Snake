@@ -5,11 +5,12 @@ import Posicion.Posicion;
 public class Transitable extends Bloque {
 	
 	protected boolean ocupado;
+	protected String imagen;
 	
-public Transitable (int x , int y,BloqueGrafico bloqueGrafico) {
+public Transitable (int x , int y,String imagen) {
 	posicion =new Posicion (x ,y);
-	bloqueGrafico.getImagensuelo();
 	ocupado=false;
+	this.imagen=imagen;
 }
 
 
@@ -28,5 +29,8 @@ public Posicion getPosicion() {
 
 	return posicion;
 }
-
+public boolean getOcupado() {
+	return ocupado;
 }
+
+

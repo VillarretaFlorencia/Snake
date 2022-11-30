@@ -6,8 +6,14 @@ import Posicion.Posicion;
 public class Alimento extends Consumible {
 	protected int puntaje;
 	protected int tamanio;
-	protected BloqueGrafico bloqueGrafico;
-	protected Posicion posicion;
+	protected String imagen;
+	
+	public Alimento (int puntaje , int tamanio , String imagen) {
+		this.puntaje=puntaje;
+		this.tamanio=tamanio;
+		this.imagen=imagen;
+		
+	}
 
 	@Override
 	public int getPuntaje() {
@@ -16,7 +22,7 @@ public class Alimento extends Consumible {
 	}
 
 	@Override
-	public int getTamano() {
+	public int getTamanio() {
 		
 		return tamanio;
 	}
@@ -26,21 +32,11 @@ public class Alimento extends Consumible {
 		visitor.visitar(this);
 	}
 
-	@Override
-	public BloqueGrafico getBloqueGrafico() {
+	public String getImagen() {
 		
-		return bloqueGrafico;
+		return imagen;
 	}
 
-	@Override
-	public void setPosicion(int x, int y) {
-		posicion.setX(x);
-    	posicion.setY(y);
-		
-	}
 
-	@Override
-	public Posicion getPosicion() {
-		return posicion;
-	}
+
 }

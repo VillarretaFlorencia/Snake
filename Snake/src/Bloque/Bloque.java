@@ -1,22 +1,23 @@
 package Bloque;
 
+import Comestibles.Consumible;
 import Posicion.Posicion;
 
 public abstract class  Bloque {
 
 protected Posicion posicion;
-protected BloqueGrafico bloqueGrafico;
+protected String imagen;
 protected Consumible consumible;
 
 
 public  abstract Posicion getPosicion();
 	
-public BloqueGrafico getBloqueGrafico () {
-	return bloqueGrafico;
+public String getImagen () {
+	return imagen;
 }
 
-public void setBloqueGrafico (BloqueGrafico bloqueGrafico ) {
-	this.bloqueGrafico=bloqueGrafico;
+public void setImagen (String imagen) {
+	this.imagen=imagen;
 }
 
 public Consumible getConsumible () {

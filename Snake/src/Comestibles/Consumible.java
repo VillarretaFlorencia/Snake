@@ -11,4 +11,6 @@ abstract public class Consumible {
     public abstract BloqueGrafico getBloqueGrafico();
     public abstract void  setPosicion (int x, int y);
     public abstract Posicion getPosicion();
+	public abstract String getImagen();
+		
    }

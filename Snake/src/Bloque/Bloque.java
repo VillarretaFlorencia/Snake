@@ -9,9 +9,8 @@ protected BloqueGrafico bloqueGrafico;
 protected Consumible consumible;
 
 
-public Posicion getBloque() {
-	return posicion;
-}
+public  abstract Posicion getPosicion();
+	
 public BloqueGrafico getBloqueGrafico () {
 	return bloqueGrafico;
 }

@@ -7,7 +7,7 @@ import java.security.KeyStore.Entry;
 import java.util.LinkedList;
 import java.util.Scanner;
 import Entrada.*;
-
+import Logica.LevelReader;
 import Bloque.Bloque;
 
 public class LevelReader {
@@ -19,8 +19,29 @@ public class LevelReader {
   private File DirPlanos = null;
   private File DirImagenes = null;
 
-  public LevelReader(int lvl) {
-    //buscamos el archivo
+  private static LevelReader lr = new LevelReader();
+  
+  public LevelReader getLevelReader() {
+	  return this;
+  }
+  
+  public LevelReader() {
+    
+  }
+  
+  public Bloque[][] crearGrilla(Nivel nivel, int stage) {
+    stage--;
+    File file; // abrimos el archivo dentro de java
+    File[] arrLvl = DirPlanos.listFiles();
+    file = arrLvl[stage];
+    System.out.println("$$$$$$$$$$$ NIVEL A CREAR +"+(stage-1)+": "+arrLvl[stage]);
+    File[] arr = DirImagenes.listFiles();
+    String urlCelda = "";
+    String urlAlimento = "";
+    String urlPowerup = "";
+    String urlPared = "";
+    /*
+  //buscamos el archivo
     File directorio = new File(System.getProperty("user.dir"));
     String[] arr = directorio.list();
     File dirSnake = null;
@@ -98,19 +119,7 @@ public class LevelReader {
     } catch (Exception e) {
       e.printStackTrace();
     }
-  }
-
-  public Bloque[][] buildNivel(Nivel nivel, int stage) {
-    stage--;
-    File file; // abrimos el archivo dentro de java
-    File[] arrLvl = DirPlanos.listFiles();
-    file = arrLvl[stage];
-    System.out.println("$$$$$$$$$$$ NIVEL A CREAR +"+(stage-1)+": "+arrLvl[stage]);
-    File[] arr = DirImagenes.listFiles();
-    String urlCelda = "";
-    String urlAlimento = "";
-    String urlPowerup = "";
-    String urlPared = "";
+    */
 
     for (int i = 0; i < arr.length; i++) {
       if (arr[i].getAbsolutePath().contains("bgcell")) {
@@ -166,7 +175,7 @@ public class LevelReader {
 
     return nivel.getNivel();
   }
-
+ 
   public File getDirImagenes() {
     return DirImagenes;
   }

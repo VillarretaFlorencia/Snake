@@ -4,24 +4,16 @@ import Bloque.Bloque;
 import Nivel.LevelReader;
 
 public class Grilla {
-	protected Bloque grilla[][];
-	private LevelReader reader = new LevelReader(2);
+	protected Bloque [][] grilla;
 	
-	public Grilla(int x, int y) {
-		grilla = new Bloque[x][y];
-		grilla = reader.buildNivel(this,numNivel);
+	public Grilla(Bloque [][] grilla) {
+		this.grilla = grilla;
 	}
 	
 	public Bloque getBloque(int x, int y) {
 		return grilla[x][y];
 	}
-	
-	public void ocuparBloque(int x, int y) {
-		grilla[x][y].ocupar();
-	}
-	public void desocuparBloque(int x, int y) {
-		grilla[x][y].desocupar();
-	}
+	//ver si se usa
 	public void modificar(int x, int y, Bloque bloque) {
 		grilla[x][y] = bloque;
 	}

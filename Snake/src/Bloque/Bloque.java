@@ -2,6 +2,7 @@ package Bloque;
 
 import Comestibles.Consumible;
 import Posicion.Posicion;
+import Visitores.Visitor;
 
 public abstract class  Bloque {
 
@@ -20,15 +21,7 @@ public void setImagen (String imagen) {
 	this.imagen=imagen;
 }
 
-public Consumible getConsumible () {
-	return consumible;
-}
-
-public void setConsumible (Consumible consumible) {
-	this.consumible=consumible;
-}
-
-public  void setBloque(Posicion pos) {
+public  void setPosicion(Posicion pos) {
 	this.posicion=posicion;
 }
 

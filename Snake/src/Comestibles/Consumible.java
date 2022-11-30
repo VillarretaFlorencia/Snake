@@ -2,15 +2,28 @@ package Comestibles;
 
 import Bloque.BloqueGrafico;
 import Posicion.Posicion;
+import Visitores.Visitor;
 
 abstract public class Consumible {
+	protected int puntaje;
+	protected int tamanio;
+	protected String imagen;
 
-	public abstract int getPuntaje();
-    public abstract int getTamanio();
-    public abstract void accept (Visitor visitor);
-    public abstract BloqueGrafico getBloqueGrafico();
-    public abstract void  setPosicion (int x, int y);
-    public abstract Posicion getPosicion();
-	public abstract String getImagen();
+
+	
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public int getTamanio() {
+		return tamanio;
+	}
+
+	public abstract void aceptar(Visitor visitor);
 		
-   }
+	public String getImagen() {
+		
+		return imagen;
+	}
+	
+}

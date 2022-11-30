@@ -1,14 +1,16 @@
 package Visitores;
 
-<<<<<<< HEAD
+
+import Bloque.Bloque;
 import Bloque.Pared;
 import Bloque.Transitable;
 import Criatura.Criatura;
 import Juego.Juego;
-import comestibles.Alimento;
+import Comestibles.*;
 
-public class VisitorCriatura {
+public class VisitorCriatura extends Visitor{
 	private Criatura criatura;
+	private Juego juego = Juego.getJuego();
 	
 	public VisitorCriatura (Criatura c) {
 		criatura = c;
@@ -20,14 +22,22 @@ public class VisitorCriatura {
 	}
 
 	public void visitar(Transitable transitable) {
-		
+		if (transitable.getOcupado()) {
+			criatura.morir();
+			Juego.terminarJuego();
+		}
 	}
 	
 	public void visitar (Alimento alimento) {
-		
+		criatura.comer(alimento.getTamanio());
+		juego.aumentarPunaje(alimento.getPuntaje());
 	}
-=======
-public class VisitorCriatura {
->>>>>>> d071e7633255eadd23496bdc3121025c089a2d0b
+	
+	public void visitar (PowerUp powerUp) {
+		criatura.comer(powerUp.getTamanio());
+		criatura.getEstado().cambiarAspecto (powerUp.getEstilo());
+		juego.aumentarPunaje(powerUp.getPuntaje());
+	}
+
 
 }

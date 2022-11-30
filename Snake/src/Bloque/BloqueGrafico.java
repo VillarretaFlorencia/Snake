@@ -4,18 +4,21 @@ public class BloqueGrafico  {
 	
 	private static BloqueGrafico bloqueGrafico = new BloqueGrafico();
 	
-	private static final  String powerupAmarillo= "./Recursos/powerupAmarillo.png";
-	private static final  String powerupNegro= "./Recursos/powerupNegro.png";
+	private static final  String powerUpAmarillo= "./Recursos/powerupAmarillo.png";
+	private static final  String powerUpNegro= "./Recursos/powerupNegro.png";
 	private static final  String powerUpBlanco= "./Recursos/powerupBlanco.png";
 	private static final  String alimentoRojo ="./Recursos/alimentoRojo.png";
 	private static final  String alimentoVerde= "./Recursos/alimentoVerde.png";
 	private static final  String alimentoNaranja="./Recursos/alimentoNaranja.png";
 	private static final String alimentoMorado = "./Recursos/alimentoMorado.png"; 
 	private static final String alimentoRosa ="./Recursos/alimentoRosa.png";
-	private static final String imagenCuerpo="./Recursos/cuerpoSnake.png";
-	private static final String imagenCabeza= "./Recursos/cabezaSnake.png";
-	private static final String imagenSuelo= "./Recursos/suelo.png";
-	private static final String imagenPared= "./Recursos/imagenPared.png";
+	private static final String cuerpoInicial="./Recursos/cuerpoSnake.png";
+	private static final String cuerpoAmarillo="./Recursos/cuerpoSnake.png";
+	private static final String cuerpoNegro="./Recursos/cuerpoSnake.png";
+	private static final String cuerpoBlanco="./Recursos/cuerpoSnake.png";
+	private static final String cabeza= "./Recursos/cabezaSnake.png";
+	private static final String suelo= "./Recursos/suelo.png";
+	private static final String pared= "./Recursos/imagenPared.png";
 	
 public BloqueGrafico () {
 	
@@ -23,49 +26,54 @@ public BloqueGrafico () {
 	
 	
 	
-public static String getPowerupamarillo() {
-		return powerupAmarillo;
+public String getPowerUpAmarillo() {
+		return powerUpAmarillo;
 	}
-public static String getPowerupnegro() {
-		return powerupNegro;
+public String getPowerUpNegro() {
+		return powerUpNegro;
 	}
-public static String getPowerupblanco() {
+public String getPowerUpBlanco() {
 		return powerUpBlanco;
 	}
-public static String getAlimentorojo() {
+public String getAlimentoRojo() {
 		return alimentoRojo;
 	}
-public static String getAlimentoverde() {
+public String getAlimentoVerde() {
 		return alimentoVerde;
 	}
-public static String getAlimentonaranja() {
+public String getAlimentoNaranja() {
 		return alimentoNaranja;
 	}
-public static String getAlimentomorado() {
+public String getAlimentoMorado() {
 		return alimentoMorado;
 	}
-public static String getAlimentorosa() {
+public String getAlimentoRosa() {
 		return alimentoRosa;
 	}
-public static String getImagencuerpo() {
-		return imagenCuerpo;
+public String getImagenCuerpo() {
+		return cuerpoInicial;
 	}
-public static String getImagencabeza() {
-		return imagenCabeza;
+public String getCuerpoAmarillo() {
+	return cuerpoAmarillo;
+}
+public String getCuerpoNegro() {
+	return cuerpoNegro;
+}
+public String getCuerpoBlanco() {
+	return cuerpoBlanco;
+}
+public String getCabeza() {
+		return cabeza;
 	}
-public static String getImagensuelo() {
-		return imagenSuelo;
+public String getSuelo() {
+		return suelo;
 	}
-public static String getImagenPared() {
-	return imagenPared;
+public String getPared() {
+	return pared;
 }
 
-public BloqueGrafico getBloqueGrafico () {
-	return this;
-}
-public void  setBloqueGrafico (BloqueGrafico bloqueGrafico) {
-	
-	this.bloqueGrafico=bloqueGrafico;
+public static BloqueGrafico getBloqueGrafico () {
+	return bloqueGrafico;
 }
 
 }

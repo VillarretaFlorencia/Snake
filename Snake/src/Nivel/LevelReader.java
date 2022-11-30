@@ -7,7 +7,7 @@ import java.security.KeyStore.Entry;
 import java.util.LinkedList;
 import java.util.Scanner;
 import Entrada.*;
-import Logica.LevelReader;
+import Posicion.Posicion;
 import Bloque.Bloque;
 
 public class LevelReader {
@@ -21,16 +21,17 @@ public class LevelReader {
 
   private static LevelReader lr = new LevelReader();
   
-  public LevelReader getLevelReader() {
-	  return this;
+  public static LevelReader getLevelReader() {
+	  return lr;
   }
   
   public LevelReader() {
     
   }
   
-  public Bloque[][] crearGrilla(Nivel nivel, int stage) {
-    stage--;
+  public Bloque[][] generarGrilla(Nivel nivel, int stage) {
+	Bloque [][] grilla = null;
+    /*stage--;
     File file; // abrimos el archivo dentro de java
     File[] arrLvl = DirPlanos.listFiles();
     file = arrLvl[stage];
@@ -119,7 +120,7 @@ public class LevelReader {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    */
+    
 
     for (int i = 0; i < arr.length; i++) {
       if (arr[i].getAbsolutePath().contains("bgcell")) {
@@ -174,6 +175,8 @@ public class LevelReader {
     }
 
     return nivel.getNivel();
+    */
+	return grilla;
   }
  
   public File getDirImagenes() {
@@ -205,8 +208,15 @@ public class LevelReader {
   }
 
   public static void main(String[] args) {
-    LevelReader minivel;
-    minivel = new LevelReader(3);
-    minivel.display();
+	  LevelReader minivel;
+	  minivel = new LevelReader();
+	  minivel.display();
+  }
+  
+  public LinkedList<Posicion> posicionesTransitables(){
+	  LinkedList<Posicion> posicionesTransitables = new LinkedList<Posicion>();
+	  
+	  return posicionesTransitables;
+	  
   }
 }

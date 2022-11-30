@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import Bloque.Bloque;
+import Bloque.BloqueGrafico;
 import Bloque.Transitable;
 import Estados.Estado;
 import Juego.Juego;
@@ -15,37 +16,44 @@ import Visitores.VisitorCriatura;
 public class Criatura {
 	//protected int miDireccion;
 	protected int enReserva;
+	//protected String imagenCuerpo;
 	protected Transitable cabeza;
 	protected Transitable cola;
-	protected BloqueGrafico graficoCuerpo;
 	protected LinkedList <Transitable> miCuerpo;
 	protected Estado miEstado;
 	protected Visitor miVisitor;
 	
-	static final int IZQUIERDA = -1;
+	BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
+	
+	/*static final int IZQUIERDA = -1;
 	static final int DERECHA = 1;
 	static final int ARRIBA = 2;
-	static final int ABAJO = -2;
+	static final int ABAJO = -2;*/
 	
-	public Criatura (LinkedList <Posicion> posiciones, BloqueGrafico bg) {
+	public Criatura (LinkedList <Posicion> posiciones, String imagenCabeza, String imagenCuerpo) {
 		enReserva = 0;
-		graficoCuerpo = bg;
 		miCuerpo = new LinkedList <Transitable> ();
 		Iterator <Posicion>  it = posiciones.iterator();
 		while (it.hasNext()) {
 			Posicion p = it.next();
-			Transitable parte = new Transitable (p.getX(),p.getY(), graficoCuerpo);
+			Transitable parte = new Transitable (p.getX(),p.getY(), imagenCuerpo);
 			parte.ocupar();
 			miCuerpo.addLast(parte);
 		}
-		cabeza = miCuerpo.getFirst(); 
+		cabeza = miCuerpo.getFirst();
+		cabeza.setImagen(imagenCabeza); 
 		cola = miCuerpo.getLast(); 
 		//miEstado = new EstadoNormal(this);
 		//miVisitor = new VisitorCriatura(this);
 	}
 	
-	public void setEstado(Estado estado) {miEstado = estado;}
+	//public void setImagenCuerpo (String imagen) {imagenCuerpo = imagen;}
+	
+	public void setEstado() {miEstado = new Estado (this);}
+	
 	public void setVisitor() {miVisitor = new VisitorCriatura(this);}
+	
+	//public String getImagen () {return imagenCuerpo;}
 	
 	public Transitable getCabeza() {
 		return cabeza;
@@ -55,15 +63,15 @@ public class Criatura {
 		return cola;
 	}
 
-	public LinkedList<Transitable> getMiCuerpo() {
+	public LinkedList<Transitable> getCuerpo() {
 		return miCuerpo;
 	}
 
-	public Estado getMiEstado() {
+	public Estado getEstado() {
 		return miEstado;
 	}
 
-	public Visitor getMiVisitor() {
+	public Visitor getVisitor() {
 		return miVisitor;
 	}
 
@@ -104,10 +112,10 @@ public class Criatura {
 	}*/
 	
 	public void mover (Bloque adyacente) {
-		miVisitor.visit(adyacente);
+		miVisitor.visitar(adyacente);
 		if (enReserva > 0) {
 			enReserva --;
-			Transitable nuevaCola = new Transitable (cola.getPosicion().getX(), cola.getPosicion().getY(), cola.getBloqueGrafico());
+			Transitable nuevaCola = new Transitable (cola.getPosicion().getX(), cola.getPosicion().getY(), imagenCuerpo);
 			nuevaCola.ocupar();
 			miCuerpo.addLast(nuevaCola);
 		}

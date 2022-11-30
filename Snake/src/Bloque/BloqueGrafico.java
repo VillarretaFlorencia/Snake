@@ -1,7 +1,5 @@
 package Bloque;
 
-import Conversor.Conversor;
-
 public class BloqueGrafico  {
 	
 	private static BloqueGrafico bloqueGrafico = new BloqueGrafico();

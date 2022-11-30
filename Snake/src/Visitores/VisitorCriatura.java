@@ -1,5 +1,6 @@
 package Visitores;
 
+<<<<<<< HEAD
 import Bloque.Pared;
 import Bloque.Transitable;
 import Criatura.Criatura;
@@ -25,5 +26,8 @@ public class VisitorCriatura {
 	public void visitar (Alimento alimento) {
 		
 	}
+=======
+public class VisitorCriatura {
+>>>>>>> d071e7633255eadd23496bdc3121025c089a2d0b
 
 }

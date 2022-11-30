@@ -1,22 +1,20 @@
 package Grilla;
 
 import Bloque.Bloque;
+import Nivel.LevelReader;
 
 public class Grilla {
-	protected Bloque grilla[][];
+	protected Bloque [][] grilla;
 	
-	public Grilla(int x, int y) {
-		grilla = new Bloque[x][y];
+	public Grilla(Bloque [][] grilla) {
+		this.grilla = grilla;
 	}
 	
 	public Bloque getBloque(int x, int y) {
 		return grilla[x][y];
 	}
-	
-	public void ocuparBloque(int x, int y) {
-		grilla[x][y].setOcupado(true);
-	}
-	public void desocuparBloque(int x, int y) {
-		grilla[x][y].setOcupado(false);
+	//ver si se usa
+	public void modificar(int x, int y, Bloque bloque) {
+		grilla[x][y] = bloque;
 	}
 }

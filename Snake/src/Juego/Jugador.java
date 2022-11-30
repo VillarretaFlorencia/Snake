@@ -5,10 +5,10 @@ import Nivel.Nivel;
 public class Jugador implements Comparable<Jugador>{
     private int puntaje;
     private String nombre;
-    private int cronometro;
 
-    public Jugador() {
-    	
+    public Jugador(String n, int p) {
+    	nombre = n;
+    	puntaje = p;
     }
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
@@ -25,9 +25,6 @@ public class Jugador implements Comparable<Jugador>{
 
     public String getNombre() {
         return nombre;
-    }
-    public int getTiempo() {
-        return cronometro;
     }
     public int getPuntaje() {
         return puntaje;

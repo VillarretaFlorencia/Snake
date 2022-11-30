@@ -26,49 +26,49 @@ public BloqueGrafico () {
 	
 	
 	
-public static String getPowerupamarillo() {
+public String getPowerUpAmarillo() {
 		return powerUpAmarillo;
 	}
-public static String getPowerupnegro() {
+public String getPowerUpNegro() {
 		return powerUpNegro;
 	}
-public static String getPowerupblanco() {
+public String getPowerUpBlanco() {
 		return powerUpBlanco;
 	}
-public static String getAlimentorojo() {
+public String getAlimentoRojo() {
 		return alimentoRojo;
 	}
-public static String getAlimentoverde() {
+public String getAlimentoVerde() {
 		return alimentoVerde;
 	}
-public static String getAlimentonaranja() {
+public String getAlimentoNaranja() {
 		return alimentoNaranja;
 	}
-public static String getAlimentomorado() {
+public String getAlimentoMorado() {
 		return alimentoMorado;
 	}
-public static String getAlimentorosa() {
+public String getAlimentoRosa() {
 		return alimentoRosa;
 	}
-public static String getImagencuerpo() {
+public String getImagenCuerpo() {
 		return cuerpoInicial;
 	}
-public static String getCuerpoAmarillo() {
+public String getCuerpoAmarillo() {
 	return cuerpoAmarillo;
 }
-public static String getCuerpoNegro() {
+public String getCuerpoNegro() {
 	return cuerpoNegro;
 }
-public static String getCuerpoBlanco() {
+public String getCuerpoBlanco() {
 	return cuerpoBlanco;
 }
-public static String getImagencabeza() {
+public String getCabeza() {
 		return cabeza;
 	}
-public static String getImagensuelo() {
+public String getSuelo() {
 		return suelo;
 	}
-public static String getImagenPared() {
+public String getPared() {
 	return pared;
 }
 

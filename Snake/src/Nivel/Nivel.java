@@ -68,6 +68,8 @@ public class Nivel {
 		juego.actualizar(transitable.getPosicion().getX(), transitable.getPosicion().getY(), consumible.getImagen()); //pasar posicion e imagem
 	}
 	
+	
+	/*
 	public Transitable obtenerTransitable() {
 		boolean estaOcupado = true;
 		Transitable posibleTransitable = null;
@@ -90,5 +92,6 @@ public class Nivel {
 		}
 		return encontre;
 	}
+	*/
 }
 

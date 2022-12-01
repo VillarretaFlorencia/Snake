@@ -62,7 +62,7 @@ public class Juego {
 	public void aumentarPuntaje(int puntaje) {
 		miJugador.aumentarPuntaje(puntaje);
 	}
-	
+	/*
 	private void creacionCriatura(){
 		LinkedList<Transitable> criatura = new LinkedList<Transitable>();
 		boolean encontrePosiciones = false;
@@ -82,6 +82,33 @@ public class Juego {
 				}
 			}
 		}
+		miCriatura = new Criatura(direccion, criatura, bloqueGrafico.getCabeza(), bloqueGrafico.getCuerpo());
+	}
+	*/
+	private void creacionCriatura() {
+		LinkedList<Transitable> criatura = new LinkedList<Transitable>();
+		LinkedList<Posicion> listaPosiciones = new LinkedList<Posicion>();
+		int direccion = (int) ((Math.random()*4) + 1);;
+		int indicePosicion = (int) ((Math.random()*4) + 1);
+		
+		//creo posiciones validas y lista que las contiene
+		Posicion p1 = new Posicion(7,10);
+		Posicion p2 = new Posicion(13,10);
+		Posicion p3 = new Posicion(16,10);
+		Posicion p4 = new Posicion(3,10);
+		listaPosiciones.addLast(p1);
+		listaPosiciones.addLast(p2);
+		listaPosiciones.addLast(p3);
+		listaPosiciones.addLast(p4);
+		Posicion posicionCabeza = listaPosiciones.get(indicePosicion);
+		
+
+		Transitable cabeza = (Transitable) grilla.getBloque(posicionCabeza.getX();posicionCabeza.getY())
+		Transitable cuerpo = (Transitable) getAdyacente(direccion,cabeza);
+		Transitable cola = (Transitable) getAdyacente(direccion,cuerpo);
+		criatura.addLast(cabeza);
+		criatura.addLast(cuerpo);
+		criatura.addLast(cola);
 		miCriatura = new Criatura(direccion, criatura, bloqueGrafico.getCabeza(), bloqueGrafico.getCuerpo());
 	}
 	

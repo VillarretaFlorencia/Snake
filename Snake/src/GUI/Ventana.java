@@ -12,6 +12,7 @@ public class Ventana extends JFrame {
 	
 	//Paneles <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	PanelRanking panelRanking = new PanelRanking();
+	PanelJuego panelJuego = new PanelJuego();
 	
 	public Ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,6 +21,7 @@ public class Ventana extends JFrame {
 	    this.setResizable(false);
 	    panelRanking.setVisible(true);
 	    //añadimos los paneles al frame
+	    getContentPane().add(panelJuego);
 	    getContentPane().add(panelRanking,RANKING);
 	}
 	

@@ -115,18 +115,10 @@ public class Criatura {
 	}*/
 	
 	public void mover () {
-		Bloque adyacente = Juego.getAdyacente(mi_direccion, cabeza);
-		miVisitor.visitar(adyacente);
-		if (enReserva > 0) {
-			enReserva --;
-			Transitable nuevaCola = new Transitable (cola.getPosicion().getX(), cola.getPosicion().getY(), imagenCuerpo);
-			nuevaCola.ocupar();
-			miCuerpo.addLast(nuevaCola);
-		}
-		else {
-			cola.desocupar();
-			miCuerpo.remove(cola);
-		}
+		Bloque adyacente = Juego.getAdyacente(miDireccion, cabeza);
+		adyacente.aceptar(miVisitor);
+		adyacente.ocupar();
+		
 	}
 	
 	/*private void desplazar (char coordenada, int movimiento) {

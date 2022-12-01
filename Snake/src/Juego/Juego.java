@@ -101,4 +101,10 @@ public class Juego {
 		}
 		return bloqueAdyacente;
 	}
+	
+	public void cambiar (String imagen, Bloque bloque) {
+		bloque.setImagen(imagen);
+		panelJuego.actualizrLabel(bloque);
+		
+	}
 }

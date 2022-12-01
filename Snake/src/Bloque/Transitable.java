@@ -54,8 +54,7 @@ public Posicion getPosicion() {
 public void aceptar (Visitor visitor) {
 	if(consumible!=null)
 		consumible.aceptar(visitor);
-	
-visitor.visitar(this);
+	visitor.visitar(this);
 }
 }
 

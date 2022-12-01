@@ -26,6 +26,23 @@ public class VisitorCriatura extends Visitor{
 			criatura.morir();
 			Juego.terminarJuego();
 		}
+		else {
+//			// cambiar a mensajes de criatura 
+			if (criatura.getReserva() > 0) {
+				enReserva --;
+				Transitable nuevaCola = new Transitable (cola.getPosicion().getX(), cola.getPosicion().getY(), imagenCuerpo);
+				nuevaCola.ocupar();
+				miCuerpo.addLast(nuevaCola);
+			}
+			else {
+				cola.desocupar();
+				miCuerpo.remove(cola);
+			}
+			cabeza = adyacente;
+			Transitable cabezaAnterior = miCuerpo.getFirst();
+			cabezaAnterior.setImagen(miEstado.getImagen());
+			miCuerpo.addFirst(adyacente);
+		}
 	}
 	
 	public void visitar (Alimento alimento) {

@@ -30,7 +30,6 @@ public class Nivel {
 	
 	public Nivel(int numNivel) {
 		this.numNivel = numNivel;
-		listaTransitables = reader.listaTransitables();
 	    //generamos el nivel
 	    grilla = new Grilla(reader.generarGrilla(this,numNivel));
 	    
@@ -61,7 +60,7 @@ public class Nivel {
 	}
 	
 	public void generarConsumibles() {
-		Transitable transitable = obtenerTransitable();
+		Transitable transitable = reader.getPosibleConsumible();
 		Consumible consumible = consumibles.getFirst();
 		transitable.setConsumible(consumible);
 		consumibles.remove(consumible);

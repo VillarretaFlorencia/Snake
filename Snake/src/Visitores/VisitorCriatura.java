@@ -18,13 +18,13 @@ public class VisitorCriatura extends Visitor{
 	
 	public void visitar(Pared pared) {
 		criatura.morir();
-		Juego.terminarJuego();
+		Juego.terminar();
 	}
 
 	public void visitar(Transitable adyacente) {
 		if (adyacente.getOcupado()) {
 			criatura.morir();
-			Juego.terminarJuego();
+			Juego.terminar();
 		}
 		else {
 			adyacente.ocupar(criatura.getEstado().getImagen());
@@ -34,8 +34,10 @@ public class VisitorCriatura extends Visitor{
 				criatura.modificarReserva(-1);
 			}
 			else {
-				criatura.getCola().desocupar();
+				Transitable cola = criatura.getCola();
+				cola.desocupar();
 				criatura.eliminarCola();
+				juego.actualizarGrilla (cola);
 			}
 		}
 	}

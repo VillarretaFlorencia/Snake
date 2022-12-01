@@ -55,8 +55,10 @@ public class Juego {
 		//creo a la snake en una ubicacion random
 		creacionCriatura();
 	}
+	
 	public void colocarConsumible() {
 		miNivel.generarConsumibles();
+		
 	}
 	
 	public void aumentarPuntaje(int puntaje) {

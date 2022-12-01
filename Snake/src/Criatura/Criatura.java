@@ -46,6 +46,7 @@ public class Criatura {
 		miEstado.cambiarAspecto (imagen);
 		miVisitor = new VisitorCriatura(this);
 	}
+	
 	public void setDireccion (int direccion) {miDireccion = direccion;}
 	
 	public void setCola (Transitable c) {
@@ -132,7 +133,7 @@ public class Criatura {
 	}*/
 	
 	public void mover () {
-		Bloque adyacente = Juego.getAdyacente(miDireccion, miCabeza);
+		Bloque adyacente = Juego.getJuego().getAdyacente(miDireccion, miCabeza);
 		adyacente.aceptar(miVisitor);
 	}
 	

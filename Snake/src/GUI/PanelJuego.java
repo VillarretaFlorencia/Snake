@@ -1,19 +1,30 @@
 package GUI;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import Bloque.Bloque;
+import Juego.Juego;
 import Nivel.*;
 import Posicion.Posicion;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 public class PanelJuego extends JPanel {
-	
+		
 	private JLabel[][] label = new JLabel[20][20];
-	private Nivel nivel;
+	
+	private JPanel infoPane;
+	private JLabel lbNivel;
+	private JLabel lbPuntaje;
+	private JLabel lbCronometro;
+	
+
+	Juego juego = Juego.getJuego();
 	
 	public PanelJuego() {
 		setLayout(new GridLayout(20,20));
@@ -30,10 +41,38 @@ public class PanelJuego extends JPanel {
 		}
 	}
 	
+	private void iniciar(int n) {
+		juego.iniciar(n);
+		//nivel.setPanelJuego (this);
+		
+		infoPane = new JPanel(new BorderLayout());
+		infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+			
+		lbNivel = new JLabel("Nivel : " + n);
+		infoPane.add(lbNivel, BorderLayout.WEST); 
+
+		lbCronometro = new JLabel("Tiempo: ");
+		infoPane.add(lbCronometro, BorderLayout.CENTER);
+		
+		lbPuntaje = new JLabel("Puntaje: 0");
+		infoPane.add(lbPuntaje, BorderLayout.EAST); 
+		
+		this.add(infoPane, BorderLayout.NORTH);
+		//System.out.println(" +++++++++++ " + hiloCriatura.isAlive());
+	}
+	
 	public void actualizarLabel (int x, int y, String imagen) {
 		//hacer icono 
 		label[x][y].setIcon(new ImageIcon(PanelJuego.class.getResource(imagen)));
-		//label[pos.getX()][pos.getY()].repaint();
+		label[x][y].repaint();
 	}
-
+	
+	public void actualizarTiempo (int tiempo) {
+		lbCronometro.setText("Tiempo: " + tiempo);
+	}
+	
+	public void actualizarPuntaje (int puntaje) {
+		lbCronometro.setText("Puntaje: " + puntaje);
+	}
+	
 }

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 import Bloque.*;
 import Criatura.Criatura;
+import GUI.PanelJuego;
 import GUI.Ventana;
 import Grilla.Grilla;
 import Hilos.HiloCriatura;
@@ -26,6 +27,7 @@ public class Juego {
 	protected Grilla grilla;
 	protected Jugador miJugador;
 	protected Criatura miCriatura;
+	protected PanelJuego miPanelJuego;
 	Thread hiloCronometro;
 	Thread hiloCriatura;
 	
@@ -56,9 +58,19 @@ public class Juego {
 		creacionCriatura();
 	}
 	
+<<<<<<< HEAD
 	public void colocarConsumible() {
 		miNivel.generarConsumibles();
 		
+=======
+	public void setPanelJuego(PanelJuego panelJuego) {
+		miPanelJuego = panelJuego;
+	}
+	
+	public void colocarConsumible() {
+		Consumible consumible = miNivel.generarConsumibles();
+		miPanelJuego.actualizarLabel((transitable.getPosicion().getX(), transitable.getPosicion().getY(), consumible.getImagen()););
+>>>>>>> a2d174bbf1edcadf24fa937956be210adc54901d
 	}
 	
 	public void aumentarPuntaje(int puntaje) {
@@ -112,9 +124,14 @@ public class Juego {
 		return bloqueAdyacente;
 	}
 	
-	public void actualizarGrilla  (Bloque bloque) {
+	public void actualizarGrilla (Bloque bloque) {
 		Posicion pos = bloque.getPosicion(); 
-		panelJuego.actualizrLabel(pos.getX(), pos.getY(), bloque.getImagen());
+		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());
 		
+	}
+	
+	public void actualizarComestible (Transitable transitable) {
+		Posicion pos = transitable.getPosicion(); 
+		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), transitable.getConsumible().getImagen());	
 	}
 }

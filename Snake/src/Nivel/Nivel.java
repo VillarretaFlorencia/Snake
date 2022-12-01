@@ -60,14 +60,15 @@ public class Nivel {
 	}
 	
 	public void generarConsumibles() {
+		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
 		Transitable transitable = reader.getPosibleConsumible();
 		Consumible consumible = consumibles.getFirst();
 		transitable.setConsumible(consumible);
 		consumibles.remove(consumible);
-		juego.actualizar(transitable.getPosicion().getX(), transitable.getPosicion().getY(), consumible.getImagen()); //pasar posicion e imagem
+		juego.actualizarComestible(transitable); //pasar posicion e imagem
 	}
 	
-	
+	//estos ya no los usamos los deje por las dudas
 	/*
 	public Transitable obtenerTransitable() {
 		boolean estaOcupado = true;

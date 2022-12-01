@@ -1,51 +1,104 @@
 package Juego;
 
-import Hilos.HiloCriatura;
-import Hilos.HiloCronometro;
-import Logica.Alimento;
-import Logica.EntidadGrafica;
-import Logica.Posicion;
 import Nivel.LevelReader;
+import Nivel.Nivel;
+import Posicion.Posicion;
 
 import java.util.LinkedList;
 
 import Bloque.*;
+import Criatura.Criatura;
+import GUI.Ventana;
+import Grilla.Grilla;
+import Hilos.HiloCriatura;
+import Hilos.HiloCronometro;
 
 
 public class Juego {
 
-	protected boolean terminarJuego;
+	static final int ARRIBA = 1;
+	static final int DERECHA = 2;
+	static final int ABAJO = 3;
+	static final int IZQUIERDA = 4;
+	
+	protected Nivel miNivel;
+	protected Ventana miVentana;
+	protected Grilla grilla;
+	protected Jugador miJugador;
+	protected Criatura miCriatura;
+	Thread hiloCronometro;
+	Thread hiloCriatura;
+	
+	protected BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	private static Juego juego = new Juego();
+	protected static LevelReader reader = LevelReader.getLevelReader();
 	  
 	public static Juego getJuego() {
 		return juego;
 	}
 
-	private Juego() {
-		terminarJuego = false;
-	}
-
-	public void iniciarJuego(int numNivel) {
-		HiloCronometro hiloCronometro = new HiloCronometro();
-		hiloCronometro = new Thread();
+	public void iniciarJuego(int numNivel, String nombre) {
+		//inicializo la ventana, nivel y jugador
+		miVentana = new Ventana();
+		miNivel = new Nivel(numNivel);
+		miJugador = new Jugador(nombre,0);
+		
+		//inicializo los hilos
+		HiloCronometro hCronometro = new HiloCronometro();
+		hiloCronometro = new Thread(hCronometro);
 		hiloCronometro.start();
 
-		HiloCriatura hiloCriatura = new HiloCriatura();
-		hiloCriatura = new Thread();
+		HiloCriatura hCriatura = new HiloCriatura();
+		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
 		
-		LinkedList<Bloque> lista = new LinkedList<Bloque>();
-		/*aca iria la posicion de los bloques de la criatura
-	    lista.addLast(new Posicion(12, 10));
-	    lista.addLast(new Posicion(11, 10));
-	    lista.addLast(new Posicion(10, 10));
-	    */
+		//creo a la snake en una ubicacion random
+		creacionCriatura();
+	}
+	public void colocarConsumible() {
+		miNivel.generarConsumibles();
+	}
+	
+	public void aumentarPuntaje(int puntaje) {
+		miJugador.aumentarPuntaje(puntaje);
+	}
+	
+	private void creacionCriatura(){
+		LinkedList<Transitable> criatura = new LinkedList<Transitable>();
+		boolean encontrePosiciones = false;
+		int direccion = null;
 		
-		for(int i = 0;  i< 5; i++) {
-	    	Posicion p = generatePosicionValida();
-		      arrComidas[i] = new Alimento(p.getX(), p.getY(), stage, (int)(Math.random()*100+1), new EntidadGrafica(urlAlimento));
-		      //la linea de aca abajo es para ver las posiciones de la comida en panel del nivel
-		      //nivel[p.getX()][p.getY()] = new Alimento(p.getX(), p.getY(), 1, 100, new EntidadGrafica(urlAlimento));
+		while(!encontrePosiciones) {
+			Transitable cabeza = miNivel.obtenerTransitable();
+			direccion = (int) ((Math.random()*4) + 1);
+			if (miNivel.estaTransitable(getAdyacente(direccion,cabeza))) {
+				Transitable cuerpo = (Transitable) getAdyacente(direccion,cabeza);
+				if (miNivel.estaTransitable(getAdyacente(direccion,cuerpo))) {
+					Transitable cola = (Transitable) getAdyacente(direccion,cuerpo);
+					encontrePosiciones = true;
+					criatura.addLast(cabeza);
+					criatura.addLast(cuerpo);
+					criatura.addLast(cola);
+				}
+			}
 		}
+		miCriatura = new Criatura(direccion, criatura, bloqueGrafico.getCabeza(), bloqueGrafico.getCuerpo());
+	}
+	
+	public Bloque getAdyacente(int direccion, Bloque bloqueActual) {
+		Bloque bloqueAdyacente = null;
+		if (direccion == ARRIBA) {
+			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX(), bloqueActual.getPosicion().getY() -1);
+		}
+		if (direccion == DERECHA) {
+			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX() -1, bloqueActual.getPosicion().getY());
+		}
+		if (direccion == ABAJO) {
+			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX(), bloqueActual.getPosicion().getY() +1);
+		}
+		if (direccion == IZQUIERDA) {
+			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX() +1, bloqueActual.getPosicion().getY());
+		}
+		return bloqueAdyacente;
 	}
 }

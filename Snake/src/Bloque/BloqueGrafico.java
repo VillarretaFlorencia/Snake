@@ -20,60 +20,71 @@ public class BloqueGrafico  {
 	private static final String suelo= "./Recursos/suelo.png";
 	private static final String pared= "./Recursos/imagenPared.png";
 	
-public BloqueGrafico () {
-	
-}
-	
-	
-	
-public String getPowerUpAmarillo() {
+	public BloqueGrafico () {
+		
+	}
+		
+	public String getPowerUpAmarillo() {
 		return powerUpAmarillo;
 	}
-public String getPowerUpNegro() {
+	
+	public String getPowerUpNegro() {
 		return powerUpNegro;
 	}
-public String getPowerUpBlanco() {
+	
+	public String getPowerUpBlanco() {
 		return powerUpBlanco;
 	}
-public String getAlimentoRojo() {
+	
+	public String getAlimentoRojo() {
 		return alimentoRojo;
 	}
-public String getAlimentoVerde() {
+	
+	public String getAlimentoVerde() {
 		return alimentoVerde;
 	}
-public String getAlimentoNaranja() {
+	
+	public String getAlimentoNaranja() {
 		return alimentoNaranja;
 	}
-public String getAlimentoMorado() {
+	
+	public String getAlimentoMorado() {
 		return alimentoMorado;
 	}
-public String getAlimentoRosa() {
+	
+	public String getAlimentoRosa() {
 		return alimentoRosa;
 	}
-public String getImagenCuerpo() {
+	
+	public String getCuerpo() {
 		return cuerpoInicial;
 	}
-public String getCuerpoAmarillo() {
-	return cuerpoAmarillo;
-}
-public String getCuerpoNegro() {
-	return cuerpoNegro;
-}
-public String getCuerpoBlanco() {
-	return cuerpoBlanco;
-}
-public String getCabeza() {
+	
+	public String getCuerpoAmarillo() {
+		return cuerpoAmarillo;
+	}
+	
+	public String getCuerpoNegro() {
+		return cuerpoNegro;
+	}
+	
+	public String getCuerpoBlanco() {
+		return cuerpoBlanco;
+	}
+	
+	public String getCabeza() {
 		return cabeza;
 	}
-public String getSuelo() {
+	
+	public String getSuelo() {
 		return suelo;
 	}
-public String getPared() {
-	return pared;
-}
-
-public static BloqueGrafico getBloqueGrafico () {
-	return bloqueGrafico;
-}
-
+	
+	public String getPared() {
+		return pared;
+	}
+	
+	public static BloqueGrafico getBloqueGrafico () {
+		return bloqueGrafico;
+	}
 }

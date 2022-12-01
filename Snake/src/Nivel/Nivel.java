@@ -2,6 +2,7 @@ package Nivel;
 
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.Popup;
@@ -21,6 +22,7 @@ public class Nivel {
 	protected Grilla grilla;
 	protected int numNivel;
 	protected LinkedList<Consumible> consumibles;
+	protected LinkedList<Transitable> listaTransitables;
 	protected static LevelReader reader = LevelReader.getLevelReader();
 	protected static BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	protected static Juego juego = Juego.getJuego();
@@ -28,11 +30,12 @@ public class Nivel {
 	
 	public Nivel(int numNivel) {
 		this.numNivel = numNivel;
-	
+		listaTransitables = reader.listaTransitables();
 	    //generamos el nivel
 	    grilla = new Grilla(reader.generarGrilla(this,numNivel));
-	    consumibles = new LinkedList<>();
 	    
+	    
+	    //generamos los consumibles
 	    Alimento alimentoRojo = new Alimento(25, 2, bloqueGrafico.getAlimentoRojo());
 	    Alimento alimentoVerde = new Alimento(50, 3, bloqueGrafico.getAlimentoVerde());
 	    Alimento alimentoNaranja = new Alimento(75, 4, bloqueGrafico.getAlimentoNaranja());
@@ -42,6 +45,8 @@ public class Nivel {
 	    PowerUp powerUpNegro = new PowerUp(75, 2, bloqueGrafico.getPowerUpNegro(), bloqueGrafico.getCuerpoNegro());
 	    PowerUp powerUpBlanco = new PowerUp(100, 3, bloqueGrafico.getPowerUpBlanco(), bloqueGrafico.getCuerpoBlanco());
 	    
+	    //generamos la lista de consumibles
+	    consumibles = new LinkedList<>();
 	    consumibles.addLast(alimentoRojo);
 	    consumibles.addFirst(alimentoVerde);
 	    consumibles.addFirst(alimentoNaranja);
@@ -51,28 +56,39 @@ public class Nivel {
 	    consumibles.addFirst(powerUpNegro);
 	    consumibles.addFirst(powerUpBlanco);
 	   
+	    //obtenemos la lista con los consumibles al azar
 	    Collections.shuffle(consumibles);
 	}
 	
-	public void ponerConsumibles() {
-		Posicion posicion;
-		LinkedList<Posicion> listaPosiciones;
-		listaPosiciones = reader.posicionesTransitables();
-		Collections.shuffle(listaPosiciones);
-		
-		posicion = listaPosiciones.getFirst();
-		Transitable bloque;
-		bloque = (Transitable) grilla.getBloque(posicion.getX(),posicion.getY());
-		
-		while(bloque.getOcupado()) {
-			posicion = listaPosiciones.getFirst();
-			bloque = (Transitable) grilla.getBloque(posicion.getX(),posicion.getY());
-		}
+	public void generarConsumibles() {
+		Transitable transitable = obtenerTransitable();
 		Consumible consumible = consumibles.getFirst();
-		bloque.setConsumible(consumible);
+		transitable.setConsumible(consumible);
 		consumibles.remove(consumible);
+		juego.actualizar(transitable.getPosicion().getX(), transitable.getPosicion().getY(), consumible.getImagen()); //pasar posicion e imagem
+	}
+	
+	public Transitable obtenerTransitable() {
+		boolean estaOcupado = true;
+		Transitable posibleTransitable = null;
+		Iterator<Transitable> it = listaTransitables.iterator();
 		
-		juego.actualizar(bloque.getPosicion().getX(), bloque.getPosicion().getY(), consumible.getImagen()); //pasar posicion e imagem
+		while(it.hasNext() && estaOcupado) {
+			posibleTransitable = it.next();
+			estaOcupado = posibleTransitable.getOcupado();
+		}	
+		return posibleTransitable;
+	}
+	
+	//PREGUNTAR FEDE y reever si queda aca o va en juego
+	public boolean estaTransitable(Bloque bloque) {
+		boolean encontre = false;
+		Iterator<Transitable> it = listaTransitables.iterator();
+		
+		while(it.hasNext() && !encontre) {
+			encontre = (bloque == it.next());
+		}
+		return encontre;
 	}
 }
 

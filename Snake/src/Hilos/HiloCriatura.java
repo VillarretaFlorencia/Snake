@@ -2,7 +2,7 @@ package Hilos;
 
 import Criatura.Criatura;
 
-public class HiloCriatura {
+public class HiloCriatura implements Runnable{
 	Criatura criatura;
 	
 	public HiloCriatura(){

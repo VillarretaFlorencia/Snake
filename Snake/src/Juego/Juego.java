@@ -31,7 +31,7 @@ public class Juego {
 	
 	protected BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	private static Juego juego = new Juego();
-	protected static LevelReader reader = LevelReader.getLevelReader();
+	protected static LevelReader levelReader = LevelReader.getLevelReader();
 	  
 	public static Juego getJuego() {
 		return juego;
@@ -86,30 +86,11 @@ public class Juego {
 	}
 	*/
 	private void creacionCriatura() {
-		LinkedList<Transitable> criatura = new LinkedList<Transitable>();
-		LinkedList<Posicion> listaPosiciones = new LinkedList<Posicion>();
-		int direccion = (int) ((Math.random()*4) + 1);;
-		int indicePosicion = (int) ((Math.random()*4) + 1);
-		
-		//creo posiciones validas y lista que las contiene
-		Posicion p1 = new Posicion(7,10);
-		Posicion p2 = new Posicion(13,10);
-		Posicion p3 = new Posicion(16,10);
-		Posicion p4 = new Posicion(3,10);
-		listaPosiciones.addLast(p1);
-		listaPosiciones.addLast(p2);
-		listaPosiciones.addLast(p3);
-		listaPosiciones.addLast(p4);
-		Posicion posicionCabeza = listaPosiciones.get(indicePosicion);
-		
-
-		Transitable cabeza = (Transitable) grilla.getBloque(posicionCabeza.getX();posicionCabeza.getY())
-		Transitable cuerpo = (Transitable) getAdyacente(direccion,cabeza);
-		Transitable cola = (Transitable) getAdyacente(direccion,cuerpo);
-		criatura.addLast(cabeza);
-		criatura.addLast(cuerpo);
-		criatura.addLast(cola);
-		miCriatura = new Criatura(direccion, criatura, bloqueGrafico.getCabeza(), bloqueGrafico.getCuerpo());
+		int direccion = (int) ((Math.random() * 4) + 1);
+		Transitable cola = levelReader.getPosibleCriatura();
+		Transitable cuerpo = (Transitable) getAdyacente(direccion, cola);
+		Transitable cabeza = (Transitable) getAdyacente(direccion, cuerpo);
+		miCriatura = new Criatura(direccion, cabeza, cuerpo, cola, bloqueGrafico.getCuerpo());
 	}
 	
 	public Bloque getAdyacente(int direccion, Bloque bloqueActual) {
@@ -129,9 +110,9 @@ public class Juego {
 		return bloqueAdyacente;
 	}
 	
-	public void cambiar (String imagen, Bloque bloque) {
-		bloque.setImagen(imagen);
-		panelJuego.actualizrLabel(bloque);
+	public void actualizarGrilla  (Bloque bloque) {
+		Posicion pos = bloque.getPosicion(); 
+		panelJuego.actualizrLabel(pos.getX(), pos.getY(), bloque.getImagen());
 		
 	}
 }

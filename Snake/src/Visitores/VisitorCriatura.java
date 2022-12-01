@@ -21,38 +21,33 @@ public class VisitorCriatura extends Visitor{
 		Juego.terminarJuego();
 	}
 
-	public void visitar(Transitable transitable) {
-		if (transitable.getOcupado()) {
+	public void visitar(Transitable adyacente) {
+		if (adyacente.getOcupado()) {
 			criatura.morir();
 			Juego.terminarJuego();
 		}
 		else {
-//			// cambiar a mensajes de criatura 
+			adyacente.ocupar(criatura.getEstado().getImagen());
+			criatura.cambiarCabeza(adyacente);
+			juego.actualizarGrilla (adyacente);
 			if (criatura.getReserva() > 0) {
-				enReserva --;
-				Transitable nuevaCola = new Transitable (cola.getPosicion().getX(), cola.getPosicion().getY(), imagenCuerpo);
-				nuevaCola.ocupar();
-				miCuerpo.addLast(nuevaCola);
+				criatura.modificarReserva(-1);
 			}
 			else {
-				cola.desocupar();
-				miCuerpo.remove(cola);
+				criatura.getCola().desocupar();
+				criatura.eliminarCola();
 			}
-			cabeza = adyacente;
-			Transitable cabezaAnterior = miCuerpo.getFirst();
-			cabezaAnterior.setImagen(miEstado.getImagen());
-			miCuerpo.addFirst(adyacente);
 		}
 	}
 	
 	public void visitar (Alimento alimento) {
-		criatura.comer(alimento.getTamanio());
+		criatura.modificarReserva (alimento.getTamanio());
 		juego.aumentarPunaje(alimento.getPuntaje());
 		juego.colocarConsumible();
 	}
 	
 	public void visitar (PowerUp powerUp) {
-		criatura.comer(powerUp.getTamanio());
+		criatura.modificarReserva (powerUp.getTamanio());
 		criatura.getEstado().cambiarAspecto (powerUp.getAspecto());
 		juego.aumentarPunaje(powerUp.getPuntaje());
 		juego.colocarConsumible();

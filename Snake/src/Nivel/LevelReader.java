@@ -10,7 +10,9 @@ public class LevelReader {
   private File DirPlanos = null;
   private File DirImagenes = null;
   private Bloque [][] grilla;
-  private LinkedList <Transitable> listaTransitables;
+  private LinkedList <Transitable> posiblesComestibles;
+  private LinkedList <Transitable> posiblesCriatura;
+  
   BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 
   private static LevelReader lr = new LevelReader();
@@ -21,7 +23,8 @@ public class LevelReader {
   
   public LevelReader() {
 	  grilla = null;
-	  listaTransitables = new LinkedList<Transitable>();
+	  posiblesComestibles = new LinkedList<Transitable>();
+	  posiblesCriatura = new LinkedList<Transitable>();
   }
   
   public Bloque[][] generarGrilla(Nivel nivel, int numNivel) {
@@ -73,12 +76,15 @@ public class LevelReader {
         		grilla[i][j] = new Pared (i, j, bloqueGrafico.getPared());
         	}
         	if (linea.charAt(j) == '#') {
-        		Transitable suelo =  new Transitable (i, j, bloqueGrafico.getSuelo());
-        		grilla[i][j] = suelo;
-        		listaTransitables.add (suelo);
-        	}      	
+        		crearSuelo (i, j);
+        	}
+        	if (linea.charAt(j) == '$') {
+        		posiblesCriatura.add(crearSuelo (i, j));
+        	}
+        	if (linea.charAt(j) == '@') {
+        		posiblesComestibles.add(crearSuelo (i, j));
+        	}
         }
-        
         i++;
       }
     } catch (Exception e) {
@@ -86,6 +92,12 @@ public class LevelReader {
     }
     
 	return grilla;
+  }
+  
+  private Transitable crearSuelo (int i, int j) {
+	  Transitable suelo =  new Transitable (i, j, bloqueGrafico.getSuelo());
+	  grilla[i][j] = suelo;
+	  return suelo;
   }
  
   public File getDirImagenes() {
@@ -105,7 +117,13 @@ public class LevelReader {
 	  minivel.display();
   }
   
-  public LinkedList<Transitable> ListaTransitables(){
-	  return listaTransitables;
+  public Transitable getPosibleConsumible() {
+	  int indice = (int) ((Math.random() * posiblesComestibles.size()));
+	  return posiblesComestibles.get(indice);
+  }
+  
+  public Transitable getPosibleCriatura() {
+	  int indice = (int) ((Math.random() * posiblesCriatura.size()));
+	  return posiblesCriatura.get(indice);
   }
 }

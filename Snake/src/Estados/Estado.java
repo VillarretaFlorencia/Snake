@@ -17,12 +17,9 @@ public class Estado {
 	public void cambiarAspecto (String aspecto) {
 		//criatura.setImagenCuerpo (aspecto); //?
 		this.aspecto = aspecto;
-		Bloque cabeza = criatura.getCabeza();
 		LinkedList<Transitable> cuerpo = criatura.getCuerpo();
 		for (Bloque parte : cuerpo) {
-			if (parte != cabeza) {
-				parte.setImagen(aspecto);
-			}
+			parte.setImagen(aspecto);
 		}
 	}
 	

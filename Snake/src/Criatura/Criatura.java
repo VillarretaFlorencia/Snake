@@ -17,8 +17,8 @@ public class Criatura {
 	protected int miDireccion;
 	protected int enReserva;
 	//protected String imagenCuerpo;
-	protected Transitable cabeza;
-	protected Transitable cola;
+	protected Transitable miCabeza;
+	protected Transitable miCola;
 	protected LinkedList <Transitable> miCuerpo;
 	protected Estado miEstado;
 	protected Visitor miVisitor;
@@ -30,40 +30,45 @@ public class Criatura {
 	static final int ARRIBA = 2;
 	static final int ABAJO = -2;*/
 	
-	public Criatura (int direccion, LinkedList <Posicion> posiciones, String imagenCabeza, String imagenCuerpo) {
+	public Criatura (int direccion, Transitable cabeza, Transitable cuerpo, Transitable cola,  String imagen) {
 		miDireccion = direccion;
 		enReserva = 0;
 		miCuerpo = new LinkedList <Transitable> ();
-		Iterator <Posicion>  it = posiciones.iterator();
-		while (it.hasNext()) {
-			Posicion p = it.next();
-			Transitable parte = new Transitable (p.getX(),p.getY(), imagenCuerpo);
-			parte.ocupar();
-			miCuerpo.addLast(parte);
-		}
-		cabeza = miCuerpo.getFirst();
-		cabeza.setImagen(imagenCabeza); 
-		cola = miCuerpo.getLast(); 
-		//miEstado = new EstadoNormal(this);
-		//miVisitor = new VisitorCriatura(this);
+		cabeza.ocupar(imagen);
+		cuerpo.ocupar(imagen);
+		cola.ocupar(imagen);
+		miCuerpo.addLast(cabeza);
+		miCuerpo.addLast(cuerpo);
+		miCuerpo.addLast(cola);
+		miCabeza = cabeza;
+		miCabeza = cola;
+		miEstado = new Estado(this);
+		miEstado.cambiarAspecto (imagen);
+		miVisitor = new VisitorCriatura(this);
 	}
 	public void setDireccion (int direccion) {miDireccion = direccion;}
 	
+	public void setCola (Transitable c) {
+		miCola = c;
+		miCuerpo.addLast(miCola);
+	}
 	//public void setImagenCuerpo (String imagen) {imagenCuerpo = imagen;}
 	
-	public void setEstado() {miEstado = new Estado (this);}
+	//public void setEstado() {miEstado = new Estado (this);}
 	
-	public void setVisitor() {miVisitor = new VisitorCriatura(this);}
+	//public void setVisitor() {miVisitor = new VisitorCriatura(this);}
 	
 	//public String getImagen () {return imagenCuerpo;}
 	public int getDireccion () {return miDireccion;}
 	
+	public int getReserva () {return enReserva;}
+	
 	public Transitable getCabeza() {
-		return cabeza;
+		return miCabeza;
 	}
 
 	public Transitable getCola() {
-		return cola;
+		return miCola;
 	}
 
 	public LinkedList<Transitable> getCuerpo() {
@@ -78,7 +83,19 @@ public class Criatura {
 		return miVisitor;
 	}
 
-
+	public void modificarReserva (int reserva) {
+		enReserva = reserva;
+	}
+	
+	public void cambiarCabeza (Transitable c) {
+		miCabeza = c;
+		miCuerpo.addFirst(miCabeza);
+	}
+	
+	public void eliminarCola() {
+		miCuerpo.remove(miCuerpo.getLast());
+		miCola = miCuerpo.getLast();
+	}
 	
 	/*public void mover (int direccion){
 		miDireccion = direccion;
@@ -115,10 +132,8 @@ public class Criatura {
 	}*/
 	
 	public void mover () {
-		Bloque adyacente = Juego.getAdyacente(miDireccion, cabeza);
+		Bloque adyacente = Juego.getAdyacente(miDireccion, miCabeza);
 		adyacente.aceptar(miVisitor);
-		adyacente.ocupar();
-		
 	}
 	
 	/*private void desplazar (char coordenada, int movimiento) {
@@ -133,10 +148,6 @@ public class Criatura {
 		}
 	}*/
 	
-	
-	public void comer (int crecer) {
-		 enReserva += crecer;
-	}
 	
 	public void morir () {
 		for (Transitable parte: miCuerpo) {

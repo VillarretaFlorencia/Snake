@@ -1,6 +1,7 @@
 package Bloque;
 
 import Posicion.Posicion;
+import Visitores.Visitor;
 
 
 public class Pared  extends Bloque{
@@ -12,5 +13,9 @@ public class Pared  extends Bloque{
 	
 	public Posicion getPosicion() {
 		return posicion;
+	}
+	
+	public void aceptar (Visitor visitor) {
+		visitor.visitar(this);
 	}
 }

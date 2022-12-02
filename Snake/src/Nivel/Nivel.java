@@ -34,7 +34,11 @@ public class Nivel {
 		levelReader = new LevelReader();
 	    //generamos el nivel
 	    grilla = new Grilla (levelReader.generarGrilla(numNivel));
-	    
+	    for (int i = 0; i < grilla.getFilas(); i++) {
+	    	for (int j = 0; j < grilla.getColumnas(); j++) {
+	    		juego.actualizarGrilla(grilla.getBloque(i,j));
+    		}
+    	}
 	    
 	    //generamos los consumibles
 	    Alimento alimentoRojo = new Alimento(25, 2, bloqueGrafico.getAlimentoRojo());
@@ -46,7 +50,7 @@ public class Nivel {
 	    PowerUp powerUpNegro = new PowerUp(75, 2, bloqueGrafico.getPowerUpNegro(), bloqueGrafico.getCuerpoNegro());
 	    PowerUp powerUpBlanco = new PowerUp(100, 3, bloqueGrafico.getPowerUpBlanco(), bloqueGrafico.getCuerpoBlanco());
 	    
-	    //generamos la lista de consumibles
+	   // generamos la lista de consumibles
 	    consumibles = new LinkedList<>();
 	    consumibles.addFirst(alimentoRojo);
 	    consumibles.addFirst(alimentoVerde);
@@ -74,10 +78,11 @@ public class Nivel {
 			Consumible consumible = consumibles.getFirst();
 			transitable.setConsumible(consumible);
 			consumibles.remove(consumible);					
-			juego.actualizarComestible(transitable); 
+			juego.actualizarComestible(transitable);
 		} else {
-			if (numNivel < 5)
-				juego.iniciar(numNivel + 1);
+			if (numNivel < 5) {
+				//juego.resetear();
+				juego.pasarDeNivel(numNivel + 1);}
 			else
 				juego.terminarJuego();
 		}
@@ -93,6 +98,7 @@ public class Nivel {
 	
 	public void limpiarNivel() {
 		grilla.vaciar();
+		//consumibles.clear();
 	}
 }
 

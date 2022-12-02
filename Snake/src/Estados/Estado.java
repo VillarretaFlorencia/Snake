@@ -1,9 +1,6 @@
 package Estados;
 
-import java.util.LinkedList;
-
 import Bloque.Bloque;
-import Bloque.Transitable;
 import Criatura.Criatura;
 import Juego.Juego;
 
@@ -17,7 +14,6 @@ public class Estado {
 	}
 	
 	public void cambiarAspecto (String aspecto) {
-		System.out.println("ENTRE A ESTADO");
 		this.aspecto = aspecto;
 		for (Bloque parte : criatura.getCuerpo()) {
 			parte.setImagen(aspecto);

@@ -1,6 +1,5 @@
 package Criatura;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import Bloque.Bloque;
@@ -8,7 +7,6 @@ import Bloque.BloqueGrafico;
 import Bloque.Transitable;
 import Estados.Estado;
 import Juego.Juego;
-import Posicion.*;
 import Visitores.Visitor;
 import Visitores.VisitorCriatura;
 
@@ -16,7 +14,6 @@ import Visitores.VisitorCriatura;
 public class Criatura {
 	protected int miDireccion;
 	protected int enReserva;
-	//protected String imagenCuerpo;
 	protected Transitable miCabeza;
 	protected Transitable miCola;
 	protected LinkedList <Transitable> miCuerpo;
@@ -96,7 +93,7 @@ public class Criatura {
 	public void morir () {
 		for (Transitable parte: miCuerpo) {
 			parte.desocupar();
-			juego.actualizarGrilla(parte);
+			//juego.actualizarGrilla(parte);
 		}
 		miCabeza = null;
 		miCola = null;

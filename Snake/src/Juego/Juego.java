@@ -60,30 +60,19 @@ public class Juego {
 		iniciar(numNivel);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
+		
 	}
 	
 	public void iniciar(int numNivel) {
+		
 		miNivel = new Nivel(numNivel);
 		miPanelJuego.actualizarNivel(numNivel);
 		grilla = miNivel.getGrilla();
-		for (int i = 0; i < grilla.getFilas(); i++) {
-	    	for (int j = 0; j < grilla.getColumnas(); j++) {
-	    		juego.actualizarGrilla(grilla.getBloque(i,j));
-    		}
-    	}
-		System.out.println("ENTRE A INICIAR" + numNivel);
+		
 		//creo a la snake en una ubicacion random
 		creacionCriatura();
-		
-		/*if (hiloCriatura != null) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
-		hCriatura.setCriatura(miCriatura);
+		hCriatura.setCriatura (miCriatura);
+				
 		colocarConsumible();	
 	}
 
@@ -169,27 +158,19 @@ public class Juego {
 			}
 		}	
 	}
-	
-	public void terminarJuego() {
-		miVentana.terminarJuego();
-		hiloCronometro.stop();
-		hiloCriatura.stop();
-		//miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
+	public void pasarDeNivel(int numNivel) {
 		miNivel.limpiarNivel();
 		miNivel = null;
 		miCriatura = null;
+		iniciar(numNivel);
 	}
-	
-	/*public void pasarDeNivel() {
-		int numNivel = miNivel.getNumNivel();
-		if (numNivel < 5) {
-			//hiloCriatura.stop();
-			//miNivel.limpiarNivel();
-			//miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
-			iniciar (miNivel.getNumNivel() + 1);
-		}
-		else{
-			this.terminarJuego();
-		}
-	}*/
+	public void terminarJuego() {
+		miVentana.terminarJuego();
+		miNivel.limpiarNivel();
+		miNivel = null;
+		miCriatura = null;
+		hiloCronometro.stop();
+		hiloCriatura.stop();
+		
+	}
 }

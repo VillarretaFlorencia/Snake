@@ -1,20 +1,11 @@
 package GUI;
 
+import java.awt.GridLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import Bloque.Bloque;
 import Juego.Juego;
-import Nivel.*;
-import Posicion.Posicion;
-
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class PanelJuego extends JPanel {
 		
@@ -36,7 +27,7 @@ public class PanelJuego extends JPanel {
 	public void iniciar(int n, String name) {
 		juego.iniciarJuego(n, name);
 	}
-	
+
 	public void actualizarLabel (int x, int y, String imagen) {
 		label[x][y].setIcon(new ImageIcon(PanelJuego.class.getResource(imagen)));
 		label[x][y].repaint();

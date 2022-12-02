@@ -26,7 +26,7 @@ public class PanelInicial extends JPanel{
 		btnStart.setBounds(96, 340, 405, 33);
 		add(btnStart);
 		btnStart.setEnabled(false);
-		
+		btnStart.setOpaque(false);
 		ingresarNombre = new JTextField();
 		ingresarNombre.addKeyListener(new KeyAdapter() {
 			@Override

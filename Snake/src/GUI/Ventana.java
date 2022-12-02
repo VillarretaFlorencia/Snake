@@ -69,9 +69,11 @@ public class Ventana extends JFrame {
 	}
 	
 	public void terminarJuego() {
+		System.out.println("Estoy en terminar juego");
 		CardLayout c1 = (CardLayout) (getContentPane().getLayout());
-		panelRanking.finJuego(juego.getJugador());
 		c1.show(getContentPane(), RANKING);
+		panelRanking.setVisible(true);
+		panelRanking.finJuego(juego.getJugador());
 	}
 	
 	public static void main(String[] args) {

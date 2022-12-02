@@ -81,7 +81,6 @@ public class Nivel {
 			juego.actualizarComestible(transitable);
 		} else {
 			if (numNivel < 5) {
-				//juego.resetear();
 				juego.pasarDeNivel(numNivel + 1);}
 			else
 				juego.terminarJuego();
@@ -98,7 +97,6 @@ public class Nivel {
 	
 	public void limpiarNivel() {
 		grilla.vaciar();
-		//consumibles.clear();
 	}
 }
 

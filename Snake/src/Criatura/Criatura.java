@@ -93,7 +93,6 @@ public class Criatura {
 	public void morir () {
 		for (Transitable parte: miCuerpo) {
 			parte.desocupar();
-			//juego.actualizarGrilla(parte);
 		}
 		miCabeza = null;
 		miCola = null;

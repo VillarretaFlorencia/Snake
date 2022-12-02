@@ -60,7 +60,6 @@ public class LevelReader {
       while (scan.hasNextLine()) {
         //empezamos por la fila de mas arriba del texto
         String linea = scan.nextLine();
-        //System.out.println(linea);
         //leemos cada linea de izquierda a dercha
         for (int j = 0; j < linea.length(); j++) {
         	if (linea.charAt(j) == 'x') {

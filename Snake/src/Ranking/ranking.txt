@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 yfggfgd;775;
 ytttt;500;
 dffd;500;
 ss;425;
 mmdm;400;
+=======
+yo;725;
+dffd;500;
+ss;425;
+mmdm;400;
+Yop;325;
+>>>>>>> 7e0e8c062b08fd6987bd871e1319c5642a9f542b

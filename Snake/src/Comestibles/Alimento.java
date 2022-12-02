@@ -10,8 +10,8 @@ public class Alimento extends Consumible {
 	public Alimento (int puntaje , int tamanio , String imagen) {
 		this.puntaje = puntaje;
 		this.tamanio = tamanio;
+		consumido = false;
 		this.imagen = imagen;
-		
 		
 	}
 

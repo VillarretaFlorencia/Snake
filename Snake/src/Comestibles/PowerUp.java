@@ -9,8 +9,10 @@ public class PowerUp extends Consumible {
 	public PowerUp (int puntaje , int tamanio , String imagen,String aspecto) {
 		this.puntaje = puntaje;
 		this.tamanio = tamanio;
+		consumido = false;
 		this.imagen = imagen;
 		this.aspecto = aspecto;
+		
 	}
 
 	public String getAspecto() {

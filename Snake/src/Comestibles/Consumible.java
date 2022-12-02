@@ -7,6 +7,7 @@ import Visitores.Visitor;
 abstract public class Consumible {
 	protected int puntaje;
 	protected int tamanio;
+	protected boolean consumido;
 	protected String imagen;
 
 
@@ -22,8 +23,10 @@ abstract public class Consumible {
 	public abstract void aceptar(Visitor visitor);
 		
 	public String getImagen() {
-		
 		return imagen;
 	}
 	
+	public boolean getConsumido() {return consumido;}
+	
+	public void consumir() {consumido = true;}
 }

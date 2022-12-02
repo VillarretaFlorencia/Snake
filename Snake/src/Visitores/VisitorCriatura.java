@@ -44,12 +44,14 @@ public class VisitorCriatura extends Visitor{
 	}
 	
 	public void visitar (Alimento alimento) {
+		alimento.consumir();
 		criatura.modificarReserva (alimento.getTamanio());
 		juego.aumentarPuntaje(alimento.getPuntaje());
-		juego.colocarConsumible();
+		juego.colocarConsumible();		
 	}
 	
 	public void visitar (PowerUp powerUp) {
+		powerUp.consumir();
 		criatura.modificarReserva (powerUp.getTamanio());
 		criatura.getEstado().cambiarAspecto (powerUp.getAspecto());
 		juego.aumentarPuntaje(powerUp.getPuntaje());

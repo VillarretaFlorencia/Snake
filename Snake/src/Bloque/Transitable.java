@@ -58,7 +58,12 @@ public class Transitable extends Bloque {
 	
 	public void aceptar (Visitor visitor) {
 		if(consumible != null)
-			consumible.aceptar(visitor);
+			if (consumible.getConsumido()) {
+				consumible = null;
+			}
+			else{
+				consumible.aceptar(visitor);
+			}
 		visitor.visitar(this);
 	}
 }

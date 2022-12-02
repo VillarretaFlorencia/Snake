@@ -25,6 +25,7 @@ public class Nivel {
 	protected LevelReader levelReader;
 	protected static BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	protected static Juego juego = Juego.getJuego();
+	protected Consumible consumible;
 	
 	
 	public Nivel(int numNivel) {
@@ -58,7 +59,7 @@ public class Nivel {
 	   
 	    //obtenemos la lista con los consumibles al azar
 	    Collections.shuffle(consumibles);
-	    
+	    consumible = consumibles.getFirst();
 	}
 	
 	public int getNumNivel() {return numNivel;}
@@ -66,8 +67,11 @@ public class Nivel {
 	public void generarConsumibles() {
 		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
 		System.out.println("ENTRE A CONSUMIBLES " + consumibles.size());
-		if (!consumibles.isEmpty()) {		
-			Transitable transitable = levelReader.getPosibleConsumible();
+		if (!consumibles.isEmpty() && consumible.getConsumido()) {	
+			Transitable transitable = levelReader.getPosibleConsumible();;
+			while(transitable.getOcupado()) {
+			transitable = levelReader.getPosibleConsumible();
+			}
 			Consumible consumible = consumibles.getFirst();
 			transitable.setConsumible(consumible);
 			consumibles.remove(consumible);
@@ -89,31 +93,5 @@ public class Nivel {
 	public void limpiarNivel() {
 		grilla.vaciar();
 	}
-	
-	//estos ya no los usamos los deje por las dudas
-	/*
-	public Transitable obtenerTransitable() {
-		boolean estaOcupado = true;
-		Transitable posibleTransitable = null;
-		Iterator<Transitable> it = listaTransitables.iterator();
-		
-		while(it.hasNext() && estaOcupado) {
-			posibleTransitable = it.next();
-			estaOcupado = posibleTransitable.getOcupado();
-		}	
-		return posibleTransitable;
-	}
-	
-	//PREGUNTAR FEDE y reever si queda aca o va en juego
-	public boolean estaTransitable(Bloque bloque) {
-		boolean encontre = false;
-		Iterator<Transitable> it = listaTransitables.iterator();
-		
-		while(it.hasNext() && !encontre) {
-			encontre = (bloque == it.next());
-		}
-		return encontre;
-	}
-	*/
 }
 

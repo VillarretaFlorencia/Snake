@@ -47,10 +47,11 @@ public class Juego {
 		//inicializo la ventana, nivel y jugador
 		
 		miJugador = new Jugador(nombre,0);
-		iniciar (numNivel);		
+				
 		//inicializo los hilos
 		hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
+		iniciar (numNivel);
 		hiloCronometro.start();
 		
 		hCriatura = new HiloCriatura();

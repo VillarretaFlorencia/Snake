@@ -14,12 +14,6 @@ public class LevelReader {
   private LinkedList <Transitable> posiblesCriatura;
   
   BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
-
-  private static LevelReader lr = new LevelReader();
-  
-  public static LevelReader getLevelReader() {
-	  return lr;
-  }
   
   public LevelReader() {
 	  grilla = null;
@@ -27,7 +21,7 @@ public class LevelReader {
 	  posiblesCriatura = new LinkedList<Transitable>();
   }
   
-  public Bloque[][] generarGrilla(Nivel nivel, int numNivel) {
+  public Bloque[][] generarGrilla(int numNivel) {
 	
     File directorio = new File(System.getProperty("user.dir"));
     //System.out.println(directorio.getAbsolutePath() + "dddddd");
@@ -43,7 +37,7 @@ public class LevelReader {
     File[] arr2 = dirRecursos.listFiles();
     for (int i = 0; i < arr2.length; i++) {
       //System.out.println(arr2[i].getAbsolutePath());
-      if (arr2[i].getAbsolutePath().contains("recursos")) {
+      if (arr2[i].getAbsolutePath().contains("Planos")) {
         dirtxt = new File(arr2[i].getAbsolutePath());
       }
     }
@@ -109,7 +103,6 @@ public class LevelReader {
   }
 
   public void display() {}
-    
 
   public static void main(String[] args) {
 	  LevelReader minivel;

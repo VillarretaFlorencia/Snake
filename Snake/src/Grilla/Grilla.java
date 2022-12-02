@@ -17,4 +17,8 @@ public class Grilla {
 	public void modificar(int x, int y, Bloque bloque) {
 		grilla[x][y] = bloque;
 	}
+	
+	public int getColumnas() {return grilla.length;}
+	
+	public int getFilas() {return grilla[0].length;}
 }

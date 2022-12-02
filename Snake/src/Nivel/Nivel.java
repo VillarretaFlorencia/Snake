@@ -23,16 +23,21 @@ public class Nivel {
 	protected int numNivel;
 	protected LinkedList<Consumible> consumibles;
 	protected LinkedList<Transitable> listaTransitables;
-	protected static LevelReader reader = LevelReader.getLevelReader();
+	protected LevelReader levelReader;
 	protected static BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	protected static Juego juego = Juego.getJuego();
 	
 	
 	public Nivel(int numNivel) {
 		this.numNivel = numNivel;
+		levelReader = new LevelReader();
 	    //generamos el nivel
-	    grilla = new Grilla(reader.generarGrilla(this,numNivel));
-	    
+	    grilla = new Grilla (levelReader.generarGrilla(numNivel));
+	    for (int i = 0; i < grilla.getFilas(); i++) {
+	    	for (int j = 0; j < grilla.getColumnas(); j++) {
+	    		juego.actualizarGrilla(grilla.getBloque(i,j));
+    		}
+    	}
 	    
 	    //generamos los consumibles
 	    Alimento alimentoRojo = new Alimento(25, 2, bloqueGrafico.getAlimentoRojo());
@@ -59,13 +64,23 @@ public class Nivel {
 	    Collections.shuffle(consumibles);
 	}
 	
+	public int getNumNivel() {return numNivel;}
+	
 	public void generarConsumibles() {
 		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
-		Transitable transitable = reader.getPosibleConsumible();
-		Consumible consumible = consumibles.getFirst();
-		transitable.setConsumible(consumible);
-		consumibles.remove(consumible);
-		juego.actualizarComestible(transitable); //pasar posicion e imagem
+		if (!consumibles.isEmpty()) {		
+			Transitable transitable = levelReader.getPosibleConsumible();
+			Consumible consumible = consumibles.getFirst();
+			transitable.setConsumible(consumible);
+			consumibles.remove(consumible);
+			juego.actualizarComestible(transitable); //pasar posicion e imagem
+		} else {
+			juego.pasarNivel();
+		}
+	}
+	
+	public Transitable getPosibleCriatura() {
+		return levelReader.getPosibleCriatura();
 	}
 	
 	//estos ya no los usamos los deje por las dudas

@@ -64,6 +64,10 @@ public class Ventana extends JFrame {
 	    am.put("DownArrow", new ArrowAction("DownArrow"));
 	}
 	
+	public void asignarVentana() {
+		juego.setVentana(this);
+	}
+	
 	public void terminarJuego() {
 		CardLayout c1 = (CardLayout) (getContentPane().getLayout());
 		panelRanking.finJuego(juego.getJugador());
@@ -72,6 +76,7 @@ public class Ventana extends JFrame {
 	
 	public static void main(String[] args) {
 		Ventana ven = new Ventana();
+		ven.asignarVentana();
 		ven.setVisible(true);
 	}
 	

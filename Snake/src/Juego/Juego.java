@@ -28,6 +28,7 @@ public class Juego {
 	protected Jugador miJugador;
 	protected Criatura miCriatura;
 	protected PanelJuego miPanelJuego;
+	protected int miTiempo;
 	Thread hiloCronometro;
 	Thread hiloCriatura;
 	
@@ -58,47 +59,24 @@ public class Juego {
 		creacionCriatura();
 	}
 	
-<<<<<<< HEAD
+	public void modificarTiempo(int tiempo) {
+		miTiempo = tiempo;
+		miPanelJuego.actualizarTiempo(tiempo);
+	}
+	
 	public void colocarConsumible() {
 		miNivel.generarConsumibles();
-		
-=======
+	}
+	
 	public void setPanelJuego(PanelJuego panelJuego) {
 		miPanelJuego = panelJuego;
 	}
 	
-	public void colocarConsumible() {
-		Consumible consumible = miNivel.generarConsumibles();
-		miPanelJuego.actualizarLabel((transitable.getPosicion().getX(), transitable.getPosicion().getY(), consumible.getImagen()););
->>>>>>> a2d174bbf1edcadf24fa937956be210adc54901d
-	}
-	
 	public void aumentarPuntaje(int puntaje) {
 		miJugador.aumentarPuntaje(puntaje);
+		miPanelJuego.actualizarPuntaje(puntaje);
 	}
-	/*
-	private void creacionCriatura(){
-		LinkedList<Transitable> criatura = new LinkedList<Transitable>();
-		boolean encontrePosiciones = false;
-		int direccion = null;
-		
-		while(!encontrePosiciones) {
-			Transitable cabeza = miNivel.obtenerTransitable();
-			direccion = (int) ((Math.random()*4) + 1);
-			if (miNivel.estaTransitable(getAdyacente(direccion,cabeza))) {
-				Transitable cuerpo = (Transitable) getAdyacente(direccion,cabeza);
-				if (miNivel.estaTransitable(getAdyacente(direccion,cuerpo))) {
-					Transitable cola = (Transitable) getAdyacente(direccion,cuerpo);
-					encontrePosiciones = true;
-					criatura.addLast(cabeza);
-					criatura.addLast(cuerpo);
-					criatura.addLast(cola);
-				}
-			}
-		}
-		miCriatura = new Criatura(direccion, criatura, bloqueGrafico.getCabeza(), bloqueGrafico.getCuerpo());
-	}
-	*/
+
 	private void creacionCriatura() {
 		int direccion = (int) ((Math.random() * 4) + 1);
 		Transitable cola = levelReader.getPosibleCriatura();
@@ -126,8 +104,7 @@ public class Juego {
 	
 	public void actualizarGrilla (Bloque bloque) {
 		Posicion pos = bloque.getPosicion(); 
-		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());
-		
+		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
 	}
 	
 	public void actualizarComestible (Transitable transitable) {

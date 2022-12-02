@@ -6,14 +6,12 @@ public class HiloCriatura implements Runnable{
 	Criatura criatura;
 	
 	public HiloCriatura(){
-		
 	}
-	
 	
 	public void run () {
 		while(true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(200);
 				criatura.mover();
 			}catch (InterruptedException e) {
 				e.getMessage();

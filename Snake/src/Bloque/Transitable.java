@@ -1,6 +1,7 @@
 package Bloque;
 
 import Comestibles.Consumible;
+import Juego.Juego;
 import Posicion.Posicion;
 import Visitores.Visitor;
 
@@ -11,23 +12,25 @@ public class Transitable extends Bloque {
 		protected Consumible consumible;
 		
 		BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
+		Juego juego = Juego.getJuego();
 		
 	public Transitable (int x , int y,String imagen) {
-		posicion =new Posicion (x ,y);
-		ocupado=false;
-		this.imagen=imagen;
+		posicion = new Posicion (x ,y);
+		ocupado = false;
+		this.imagen = imagen;
 	}
 	
 	
 	public void ocupar(String imagen) {
 		ocupado = true;
 		this.imagen = imagen;
+		//juego.actualizarGrilla (this);
 	}
 	
 	public void desocupar() {
 		ocupado = false;
 		imagen = bloqueGrafico.getSuelo();
-		
+		//juego.actualizarGrilla (this);
 	}
 	public boolean getOcupado() {
 		return ocupado;
@@ -47,10 +50,12 @@ public class Transitable extends Bloque {
 	public void setConsumible (Consumible consumible) {
 		this.consumible = consumible;
 	}
+	
 	public Posicion getPosicion() {
 	
 		return posicion;
 	}
+	
 	public void aceptar (Visitor visitor) {
 		if(consumible != null)
 			consumible.aceptar(visitor);

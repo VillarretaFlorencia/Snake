@@ -39,9 +39,9 @@ public class Criatura {
 		cola.ocupar(imagen);
 		miCuerpo.addLast(cabeza);
 		miCuerpo.addLast(cuerpo);
-		miCuerpo.addLast(cola);
+		miCuerpo.addLast(cola);		
 		miCabeza = cabeza;
-		miCabeza = cola;
+		miCola = cola;
 		miEstado = new Estado(this);
 		miEstado.cambiarAspecto (imagen);
 		miVisitor = new VisitorCriatura(this);
@@ -133,6 +133,7 @@ public class Criatura {
 	}*/
 	
 	public void mover () {
+		System.out.println("MOVER adyacente-> " + Juego.getJuego().getAdyacente(miDireccion, miCabeza).getImagen());
 		Bloque adyacente = Juego.getJuego().getAdyacente(miDireccion, miCabeza);
 		adyacente.aceptar(miVisitor);
 	}
@@ -151,6 +152,7 @@ public class Criatura {
 	
 	
 	public void morir () {
+		System.out.println("MORI");
 		for (Transitable parte: miCuerpo) {
 			parte.desocupar();
 		}

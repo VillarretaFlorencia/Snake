@@ -29,6 +29,7 @@ public class Juego {
 	protected PanelJuego miPanelJuego;
 	protected int miTiempo;
 	protected HiloCriatura hCriatura;
+	protected HiloCronometro hCronometro;
 	protected Ventana miVentana;
 	
 	Thread hiloCronometro;
@@ -50,9 +51,8 @@ public class Juego {
 		creacionCriatura();
 		
 		//inicializo los hilos
-		HiloCronometro hCronometro = new HiloCronometro();
+		hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
-		
 		hiloCronometro.start();
 
 		hCriatura = new HiloCriatura();
@@ -91,6 +91,9 @@ public class Juego {
 		Transitable cuerpo = (Transitable) getAdyacente(direccion, cola);
 		Transitable cabeza = (Transitable) getAdyacente(direccion, cuerpo);
 		miCriatura = new Criatura(direccion, cabeza, cuerpo, cola, bloqueGrafico.getCuerpo());
+		actualizarGrilla (cola);
+		actualizarGrilla (cuerpo);
+		actualizarGrilla (cabeza);
 		
 		System.out.println(miCriatura.getDireccion());
 	}
@@ -116,6 +119,12 @@ public class Juego {
 	}
 	
 	public void actualizarGrilla (Bloque bloque) {
+		Posicion pos = bloque.getPosicion(); 
+		System.out.println(bloque.getImagen());
+		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
+	}
+	
+	public void actualizarGrilla (Transitable bloque) {
 		Posicion pos = bloque.getPosicion(); 
 		System.out.println(bloque.getImagen());
 		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	

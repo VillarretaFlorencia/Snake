@@ -80,7 +80,7 @@ public class Ventana extends JFrame {
 	public class ArrowAction extends AbstractAction {
 
 	    private String cmd;
-
+	    Juego juego = Juego.getJuego();
 	    public ArrowAction(String cmd) {
 	        this.cmd = cmd;
 	    }
@@ -88,13 +88,17 @@ public class Ventana extends JFrame {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {//aqui adentro van los mover
 	        if (cmd.equalsIgnoreCase("LeftArrow")) {
-	            System.out.println("The left arrow was pressed!");
+	        	System.out.println("OOOOO");
+	            juego.cambiarDireccion(4);
 	        } else if (cmd.equalsIgnoreCase("RightArrow")) {
-	            System.out.println("The right arrow was pressed!");
+	        	System.out.println("OOOOO");
+	        	juego.cambiarDireccion(2);
 	        } else if (cmd.equalsIgnoreCase("UpArrow")) {
-	            System.out.println("The up arrow was pressed!");
+	        	System.out.println("OOOOO");
+	        	juego.cambiarDireccion(1);
 	        } else if (cmd.equalsIgnoreCase("DownArrow")) {
-	            System.out.println("The down arrow was pressed!");
+	        	System.out.println("OOOOO");
+	            juego.cambiarDireccion(3);
 	        }
 	    }
 	}

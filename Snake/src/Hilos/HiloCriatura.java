@@ -10,8 +10,6 @@ public class HiloCriatura  implements Runnable {
 	
 	public void run () {
 		try {
-			//Thread.sleep(1000);
-			
 			while(true) {				
 				Thread.sleep(250);
 				criatura.mover();
@@ -19,8 +17,6 @@ public class HiloCriatura  implements Runnable {
 		}catch (InterruptedException e) {
 			e.getMessage();
 		}
-		
-		
 	}
 	
 	public void setCriatura (Criatura c) {criatura = c;}

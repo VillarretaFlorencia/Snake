@@ -66,21 +66,17 @@ public class Ranking {
 				String nombre = "";
 				int posicion = 0;
 				for(int i = posicion; i < linea.length() && (linea.charAt(i) != ';'); i++) {
-					//System.out.println(linea.charAt(i));
 					nombre = nombre + linea.charAt(i);
 					posicion = i;
 				}
 				posicion++;
 				posicion++;//saltamos el ;
-				//System.out.println(linea.charAt(posicion));
 				//leemos el puntaje
 				String puntajeAux = "";
 				for(int i = posicion; i < linea.length() && (linea.charAt(i) != ';'); i++) {
-					//System.out.println(linea.charAt(i));
 					puntajeAux = puntajeAux + linea.charAt(i);
 				}
 				
-				//System.out.println(nombre);
 				int puntaje = Integer.valueOf(puntajeAux);
 				
 				jugador.setNombre(nombre);
@@ -163,10 +159,6 @@ public class Ranking {
 		Ranking r = new Ranking();
 		Jugador jug = new Jugador("Stanke",21);
 		r.sobreescribir(jug);
-		System.out.println("-------------------------------");
-		System.out.println(r.toString());
-		
 	}
-	
 }
 

@@ -41,11 +41,7 @@ public class PanelInicial extends JPanel{
 
 		ingresarNombre.setBounds(108, 309, 382, 20);
 		add(ingresarNombre);
-		ingresarNombre.setColumns(10);
-		
-		
-		
-		
+		ingresarNombre.setColumns(10);		
 	}
 	
 	public JButton getStartBtn(){

@@ -10,19 +10,21 @@ public abstract class  Bloque {
 	protected String imagen;
 	protected Consumible consumible;
 	
+
+	public void setImagen (String imagen) {
+		this.imagen = imagen;
+	}
+
+	public  void setPosicion(Posicion pos) {
+		this.posicion = pos;
+	}
 	
-	public  abstract Posicion getPosicion();
-		
 	public String getImagen () {
 		return imagen;
 	}
 	
-	public void setImagen (String imagen) {
-		this.imagen = imagen;
-	}
-	
-	public  void setPosicion(Posicion pos) {
-		this.posicion = posicion;
+	public Posicion getPosicion() {
+		return posicion;
 	}
 	
 	public abstract void aceptar (Visitor visitor);

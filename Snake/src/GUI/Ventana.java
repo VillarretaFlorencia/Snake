@@ -22,7 +22,7 @@ public class Ventana extends JFrame {
 	static final String JUEGO = "Panel del juego";
 	static final String RANKING = "Panel del ranking";
 	
-	//Paneles <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	//Paneles <
 	PanelInicial panelInicial = new PanelInicial();
 	PanelJuegoConRank panelJuego = new PanelJuegoConRank();
 	PanelRanking panelRanking = new PanelRanking();
@@ -82,7 +82,6 @@ public class Ventana extends JFrame {
 		ven.setVisible(true);
 	}
 	
-	
 	//https://stackoverflow.com/questions/15422488/java-keybindings
 	public class ArrowAction extends AbstractAction {
 
@@ -92,8 +91,7 @@ public class Ventana extends JFrame {
 	        this.cmd = cmd;
 	    }
 
-	    @Override
-	    public void actionPerformed(ActionEvent e) {//aqui adentro van los mover
+	    public void actionPerformed(ActionEvent e) {
 	        if (cmd.equalsIgnoreCase("LeftArrow")) {
 	            juego.cambiarDireccion(4);
 	        } else if (cmd.equalsIgnoreCase("RightArrow")) {

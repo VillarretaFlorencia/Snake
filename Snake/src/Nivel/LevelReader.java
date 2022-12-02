@@ -23,9 +23,7 @@ public class LevelReader {
   }
   
   public Bloque[][] generarGrilla(int numNivel) {
-	//grilla = new Bloque[20][20];
     File directorio = new File(System.getProperty("user.dir"));
-    //System.out.println(directorio.getAbsolutePath() + "dddddd");
     String[] arr = directorio.list();
     File dirRecursos = null;
     File dirtxt = null;
@@ -77,7 +75,6 @@ public class LevelReader {
         	if (linea.charAt(j) == '@') {
         		posiblesComestibles.add(crearSuelo (j, i));
         	}
-        	//Juego.getJuego().actualizarGrilla(grilla[j][i]);
         }
         i++;
       }

@@ -9,8 +9,6 @@ abstract public class Consumible {
 	protected int tamanio;
 	protected boolean consumido;
 	protected String imagen;
-
-
 	
 	public int getPuntaje() {
 		return puntaje;
@@ -19,14 +17,14 @@ abstract public class Consumible {
 	public int getTamanio() {
 		return tamanio;
 	}
-
-	public abstract void aceptar(Visitor visitor);
-		
+	
+	public boolean getConsumido() {return consumido;}
+	
 	public String getImagen() {
 		return imagen;
 	}
 	
-	public boolean getConsumido() {return consumido;}
-	
 	public void consumir() {consumido = true;}
+	
+	public abstract void aceptar(Visitor visitor);
 }

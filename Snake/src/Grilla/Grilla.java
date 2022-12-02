@@ -13,10 +13,6 @@ public class Grilla {
 	public Bloque getBloque(int x, int y) {
 		return grilla[x][y];
 	}
-	//ver si se usa
-	public void modificar(int x, int y, Bloque bloque) {
-		grilla[x][y] = bloque;
-	}
 	
 	public int getColumnas() {return grilla.length;}
 	

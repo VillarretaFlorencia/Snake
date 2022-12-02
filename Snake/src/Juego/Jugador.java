@@ -34,11 +34,10 @@ public class Jugador implements Comparable<Jugador>{
     	this.nombre = jugador.getNombre();
     	this.puntaje = jugador.getPuntaje();
     }
-	@Override
+    
 	public int compareTo(Jugador o) {
 		Integer compara = o.getPuntaje();
 		compara.compareTo(puntaje);
 		return compara;
 	}
-
 }

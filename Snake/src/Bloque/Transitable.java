@@ -7,53 +7,47 @@ import Visitores.Visitor;
 
 public class Transitable extends Bloque {
 	
-		protected boolean ocupado;
-		protected String imagen;
-		protected Consumible consumible;
-		
-		BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
-		Juego juego = Juego.getJuego();
+	protected boolean ocupado;
+	protected String imagen;
+	protected Consumible consumible;
+	
+	BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
+	Juego juego = Juego.getJuego();
 		
 	public Transitable (int x , int y,String imagen) {
 		posicion = new Posicion (x ,y);
 		ocupado = false;
 		this.imagen = imagen;
 	}
-	
-	
-	public void ocupar(String imagen) {
-		ocupado = true;
-		this.imagen = imagen;
-		//juego.actualizarGrilla (this);
+
+	public void setConsumible (Consumible consumible) {
+		this.consumible = consumible;
 	}
-	
-	public void desocupar() {
-		ocupado = false;
-		imagen = bloqueGrafico.getSuelo();
-		//juego.actualizarGrilla (this);
-	}
-	public boolean getOcupado() {
-		return ocupado;
-	}
-	public String getImagen () {
-		return imagen;
-	}
-	public void setImagen (String imagen) {
-		this.imagen = imagen;
-	}
-	
 	
 	public Consumible getConsumible () {
 		return consumible;
 	}
 	
-	public void setConsumible (Consumible consumible) {
-		this.consumible = consumible;
+	public void setImagen (String imagen) {
+		this.imagen = imagen;
 	}
 	
-	public Posicion getPosicion() {
+	public String getImagen () {
+		return imagen;
+	}
 	
-		return posicion;
+	public boolean getOcupado() {
+		return ocupado;
+	}
+	
+	public void ocupar(String imagen) {
+		ocupado = true;
+		this.imagen = imagen;
+	}
+
+	public void desocupar() {
+		ocupado = false;
+		imagen = bloqueGrafico.getSuelo();
 	}
 	
 	public void aceptar (Visitor visitor) {

@@ -56,11 +56,11 @@ public class Juego {
 		iniciar(numNivel);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
-		
 	}
 	
 	public void iniciar(int numNivel) {
 		miNivel = new Nivel(numNivel);
+		miPanelJuego.actualizarNivel(numNivel);
 		grilla = miNivel.getGrilla();
 		for (int i = 0; i < grilla.getFilas(); i++) {
 	    	for (int j = 0; j < grilla.getColumnas(); j++) {
@@ -80,11 +80,8 @@ public class Juego {
 			}
 		}*/
 		hCriatura.setCriatura(miCriatura);
-		
 		colocarConsumible();	
 	}
-	
-	
 
 	private void creacionCriatura() {
 		int direccion = (int) ((Math.random() * 4) + 1);
@@ -166,8 +163,7 @@ public class Juego {
 			if (direccion == ARRIBA || direccion == ABAJO) {
 			miCriatura.setDireccion(direccion);
 			}
-		}
-		
+		}	
 	}
 	
 	public void terminarJuego() {
@@ -178,7 +174,6 @@ public class Juego {
 		miNivel.limpiarNivel();
 		miNivel = null;
 		miCriatura = null;
-		
 	}
 	
 	/*public void pasarDeNivel() {
@@ -197,5 +192,4 @@ public class Juego {
 	public Jugador getJugador() {
 		return miJugador;
 	}
-
 }

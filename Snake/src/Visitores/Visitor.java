@@ -14,7 +14,6 @@ public abstract class Visitor {
 	public abstract void visitar (Alimento alimento);
 	
 	public abstract void visitar (PowerUp powerUp);
-	
 }
 
 

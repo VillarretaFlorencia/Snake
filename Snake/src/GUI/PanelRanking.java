@@ -59,6 +59,5 @@ public class PanelRanking extends JPanel {
 			tabla[i].repaint();
 			i++;
 		}
-		
 	}
 }

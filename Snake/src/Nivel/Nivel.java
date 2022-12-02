@@ -66,26 +66,20 @@ public class Nivel {
 	
 	public void generarConsumibles() {
 		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
-		System.out.println(ultimoConsumible.getConsumido());
 		if (!consumibles.isEmpty() && !ultimoConsumible.getConsumido()){
-			System.out.println("ENTRE A CONSUMIBLES " + consumibles.size());
-				//if (consumible.getConsumido()) {	
-					Transitable transitable = levelReader.getPosibleConsumible();
-					while(transitable.getOcupado()) {
-						transitable = levelReader.getPosibleConsumible();
-					}
-					Consumible consumible = consumibles.getFirst();
-					transitable.setConsumible(consumible);
-					consumibles.remove(consumible);					
-					System.out.println("ENTRE A CONSUMIBLES elimine " + consumibles.size());
-					juego.actualizarComestible(transitable); //pasar posicion e imagem
-				//}
+			Transitable transitable = levelReader.getPosibleConsumible();
+			while(transitable.getOcupado()) {
+				transitable = levelReader.getPosibleConsumible();
+			}
+			Consumible consumible = consumibles.getFirst();
+			transitable.setConsumible(consumible);
+			consumibles.remove(consumible);					
+			juego.actualizarComestible(transitable); 
 		} else {
 			if (numNivel < 5)
 				juego.iniciar(numNivel + 1);
 			else
 				juego.terminarJuego();
-				
 		}
 	}
 	
@@ -97,7 +91,6 @@ public class Nivel {
 		return grilla;
 	}
 	
-
 	public void limpiarNivel() {
 		grilla.vaciar();
 	}

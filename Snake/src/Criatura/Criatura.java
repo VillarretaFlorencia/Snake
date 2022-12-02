@@ -25,14 +25,6 @@ public class Criatura {
 	
 	BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	Juego juego = Juego.getJuego();
-<<<<<<< HEAD
-	
-=======
->>>>>>> e28ae1ad9a34c1191bbe4f1e8e65c816f22757bc
-	/*static final int IZQUIERDA = -1;
-	static final int DERECHA = 1;
-	static final int ARRIBA = 2;
-	static final int ABAJO = -2;*/
 	
 	public Criatura (int direccion, Transitable cabeza, Transitable cuerpo, Transitable cola,  String imagen) {
 		miDireccion = direccion;
@@ -57,13 +49,7 @@ public class Criatura {
 		miCola = c;
 		miCuerpo.addLast(miCola);
 	}
-	//public void setImagenCuerpo (String imagen) {imagenCuerpo = imagen;}
 	
-	//public void setEstado() {miEstado = new Estado (this);}
-	
-	//public void setVisitor() {miVisitor = new VisitorCriatura(this);}
-	
-	//public String getImagen () {return imagenCuerpo;}
 	public int getDireccion () {return miDireccion;}
 	
 	public int getReserva () {return enReserva;}
@@ -89,7 +75,7 @@ public class Criatura {
 	}
 
 	public void modificarReserva (int reserva) {
-		enReserva = reserva;
+		enReserva += reserva;
 	}
 	
 	public void cambiarCabeza (Transitable c) {
@@ -118,6 +104,5 @@ public class Criatura {
 		miCola = null;
 		enReserva = 0;
 		miCuerpo.clear();
-		juego.terminarJuego();
 	}
 }

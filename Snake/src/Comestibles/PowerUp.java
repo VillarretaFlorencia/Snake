@@ -12,7 +12,6 @@ public class PowerUp extends Consumible {
 		consumido = false;
 		this.imagen = imagen;
 		this.aspecto = aspecto;
-		
 	}
 
 	public String getAspecto() {
@@ -22,6 +21,4 @@ public class PowerUp extends Consumible {
 	public void aceptar(Visitor visitor) {
 		visitor.visitar(this);
 	}
-
-
 }

@@ -34,11 +34,7 @@ public class Nivel {
 		levelReader = new LevelReader();
 	    //generamos el nivel
 	    grilla = new Grilla (levelReader.generarGrilla(numNivel));
-	    for (int i = 0; i < grilla.getFilas(); i++) {
-	    	for (int j = 0; j < grilla.getColumnas(); j++) {
-	    		juego.actualizarGrilla(grilla.getBloque(i,j));
-    		}
-    	}
+	    
 	    
 	    //generamos los consumibles
 	    Alimento alimentoRojo = new Alimento(25, 2, bloqueGrafico.getAlimentoRojo());
@@ -70,7 +66,7 @@ public class Nivel {
 	
 	public void generarConsumibles() {
 		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
-		System.out.println("CONSUMIDO: " + ultimoConsumible.getConsumido());
+		System.out.println(ultimoConsumible.getConsumido());
 		if (!consumibles.isEmpty() && !ultimoConsumible.getConsumido()){
 			System.out.println("ENTRE A CONSUMIBLES " + consumibles.size());
 				//if (consumible.getConsumido()) {	
@@ -85,7 +81,11 @@ public class Nivel {
 					juego.actualizarComestible(transitable); //pasar posicion e imagem
 				//}
 		} else {
-			juego.pasarDeNivel();
+			if (numNivel < 5)
+				juego.iniciar(numNivel + 1);
+			else
+				juego.terminarJuego();
+				
 		}
 	}
 	
@@ -96,10 +96,10 @@ public class Nivel {
 	public Grilla getGrilla() {
 		return grilla;
 	}
+	
 
 	public void limpiarNivel() {
 		grilla.vaciar();
-		consumibles.clear();
 	}
 }
 

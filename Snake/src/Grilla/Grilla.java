@@ -9,7 +9,7 @@ public class Grilla {
 	public Grilla(Bloque [][] grilla) {
 		this.grilla = grilla;
 	}
-	
+
 	public Bloque getBloque(int x, int y) {
 		return grilla[x][y];
 	}

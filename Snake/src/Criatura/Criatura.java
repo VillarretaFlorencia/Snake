@@ -24,6 +24,7 @@ public class Criatura {
 	protected Visitor miVisitor;
 	
 	BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
+	Juego juego = Juego.getJuego();
 	
 	/*static final int IZQUIERDA = -1;
 	static final int DERECHA = 1;
@@ -99,7 +100,7 @@ public class Criatura {
 	}
 		
 	public void mover () {
-		Bloque adyacente = Juego.getJuego().getAdyacente(miDireccion, miCabeza);
+		Bloque adyacente = juego.getAdyacente(miDireccion, miCabeza);
 		adyacente.aceptar(miVisitor);
 	}
 		
@@ -107,7 +108,12 @@ public class Criatura {
 		System.out.println("MORI");
 		for (Transitable parte: miCuerpo) {
 			parte.desocupar();
+			juego.actualizarGrilla(parte);
 		}
+		System.out.println("CABEZA" + miCabeza.getImagen());
+		miCabeza = null;
+		miCola = null;
+		enReserva = 0;
 		miCuerpo.clear();
 	}
 }

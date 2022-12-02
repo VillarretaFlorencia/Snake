@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.Scanner;
 import Bloque.*;
+import Juego.Juego;
 
 public class LevelReader {
 
@@ -76,6 +77,7 @@ public class LevelReader {
         	if (linea.charAt(j) == '@') {
         		posiblesComestibles.add(crearSuelo (j, i));
         	}
+        	//Juego.getJuego().actualizarGrilla(grilla[j][i]);
         }
         i++;
       }

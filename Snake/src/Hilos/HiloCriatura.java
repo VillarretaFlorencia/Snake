@@ -2,7 +2,7 @@ package Hilos;
 
 import Criatura.Criatura;
 
-public class HiloCriatura implements Runnable{
+public class HiloCriatura  implements Runnable {
 	Criatura criatura;
 	
 	public HiloCriatura(){
@@ -19,6 +19,8 @@ public class HiloCriatura implements Runnable{
 		}catch (InterruptedException e) {
 			e.getMessage();
 		}
+		
+		
 	}
 	
 	public void setCriatura (Criatura c) {criatura = c;}

@@ -51,7 +51,7 @@ public class Juego {
 		creacionCriatura();
 		
 		//inicializo los hilos
-		HiloCronometro hCronometro = new HiloCronometro();
+		/*HiloCronometro hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
 		hiloCronometro.start();
 
@@ -59,6 +59,7 @@ public class Juego {
 		hCriatura.setCriatura(miCriatura);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
+		*/
 		
 	}
 	

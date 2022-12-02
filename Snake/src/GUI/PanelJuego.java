@@ -77,9 +77,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 		lbCronometro.setText("Puntaje: " + puntaje);
 	}
 	
-	public void terminarJuego() {
-		juego.matarHilos();
-	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {

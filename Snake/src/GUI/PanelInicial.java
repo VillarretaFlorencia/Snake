@@ -19,7 +19,7 @@ public class PanelInicial extends JPanel{
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(PanelInicial.class.getResource("/Recursos/PantallaInicio.jpg")));
-		Fondo.setBounds(340, 0, 633, 632);
+		Fondo.setBounds(0, -15, 633, 632);
 		add(Fondo);
 		
 		btnStart = new JButton("");

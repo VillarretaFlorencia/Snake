@@ -52,5 +52,13 @@ public class PanelRanking extends JPanel {
 	
 	public void finJuego(Jugador j) {
 		rank.sobreescribir(j);
+		LinkedList<Jugador> jugadores = rank.getListaJugadores();
+		int i = 0;
+		for(Jugador jug : jugadores) {
+			tabla[i].setText((i+1)+". "+ jug.getNombre()+" - "+jug.getPuntaje()+" Puntos");
+			tabla[i].repaint();
+			i++;
+		}
+		
 	}
 }

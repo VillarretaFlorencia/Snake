@@ -16,13 +16,13 @@ public class LevelReader {
   BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
   
   public LevelReader() {
-	  grilla = null;
+	  grilla = new Bloque[20][20];
 	  posiblesComestibles = new LinkedList<Transitable>();
 	  posiblesCriatura = new LinkedList<Transitable>();
   }
   
   public Bloque[][] generarGrilla(int numNivel) {
-	
+	//grilla = new Bloque[20][20];
     File directorio = new File(System.getProperty("user.dir"));
     //System.out.println(directorio.getAbsolutePath() + "dddddd");
     String[] arr = directorio.list();
@@ -49,9 +49,7 @@ public class LevelReader {
       }
     }
 
-    String ruta = "";
-
-    ruta = dirtxt.getAbsolutePath();
+    String ruta = dirtxt.getAbsolutePath();
 
     File file = new File(ruta); // abrimos el archivo dentro de java
     try {

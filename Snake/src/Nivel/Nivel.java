@@ -83,6 +83,10 @@ public class Nivel {
 		return levelReader.getPosibleCriatura();
 	}
 	
+	public Grilla getGrilla() {
+		return grilla;
+	}
+	
 	//estos ya no los usamos los deje por las dudas
 	/*
 	public Transitable obtenerTransitable() {

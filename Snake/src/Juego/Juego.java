@@ -44,7 +44,11 @@ public class Juego {
 	public void iniciarJuego(int numNivel, String nombre) {
 		//inicializo la ventana, nivel y jugador
 		miNivel = new Nivel(numNivel);
+		grilla = miNivel.getGrilla();
 		miJugador = new Jugador(nombre,0);
+
+		//creo a la snake en una ubicacion random
+		creacionCriatura();
 		
 		//inicializo los hilos
 		HiloCronometro hCronometro = new HiloCronometro();
@@ -52,11 +56,10 @@ public class Juego {
 		hiloCronometro.start();
 
 		hCriatura = new HiloCriatura();
+		hCriatura.setCriatura(miCriatura);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
 		
-		//creo a la snake en una ubicacion random
-		creacionCriatura();
 	}
 	
 	public void modificarTiempo(int tiempo) {
@@ -87,6 +90,8 @@ public class Juego {
 		Transitable cuerpo = (Transitable) getAdyacente(direccion, cola);
 		Transitable cabeza = (Transitable) getAdyacente(direccion, cuerpo);
 		miCriatura = new Criatura(direccion, cabeza, cuerpo, cola, bloqueGrafico.getCuerpo());
+		
+		System.out.println(miCriatura.getDireccion());
 	}
 	
 	public Bloque getAdyacente(int direccion, Bloque bloqueActual) {
@@ -111,6 +116,7 @@ public class Juego {
 	
 	public void actualizarGrilla (Bloque bloque) {
 		Posicion pos = bloque.getPosicion(); 
+		System.out.println(bloque.getImagen());
 		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
 	}
 	
@@ -137,6 +143,7 @@ public class Juego {
 		int numNivel = miNivel.getNumNivel();
 		if (numNivel < 5) {
 			miNivel = new Nivel(numNivel + 1);
+			grilla = miNivel.getGrilla();
 			creacionCriatura();
 			hCriatura.setCriatura(miCriatura);
 		}

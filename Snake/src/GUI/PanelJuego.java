@@ -16,7 +16,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class PanelJuego extends JPanel implements KeyListener{
+public class PanelJuego extends JPanel {
 		
 	private JLabel[][] label = new JLabel[20][20];
 	
@@ -80,27 +80,6 @@ public class PanelJuego extends JPanel implements KeyListener{
 	}
 	
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		switch(e.getKeyChar()){
-			case 'w': juego.cambiarDireccion(1); break;
-			case 'd': juego.cambiarDireccion(2); break;
-			case 's': juego.cambiarDireccion(3); break;
-			case 'a': juego.cambiarDireccion(4); break;
-		}
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }

@@ -3,8 +3,15 @@ package GUI;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import Juego.Juego;
 
@@ -20,6 +27,10 @@ public class Ventana extends JFrame {
 	PanelJuego panelJuego = new PanelJuego();
 	PanelRanking panelRanking = new PanelRanking();
 	
+	
+	InputMap im = panelJuego.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap am = panelJuego.getActionMap();
+    
 	Juego juego = Juego.getJuego();
 	
 	public Ventana() {
@@ -42,6 +53,15 @@ public class Ventana extends JFrame {
 	                }
 	              }
 	            );
+	    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "RightArrow");
+	    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "LeftArrow");
+	    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "UpArrow");
+	    im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "DownArrow");
+
+	    am.put("RightArrow", new ArrowAction("RightArrow"));
+	    am.put("LeftArrow", new ArrowAction("LeftArrow"));
+	    am.put("UpArrow", new ArrowAction("UpArrow"));
+	    am.put("DownArrow", new ArrowAction("DownArrow"));
 	}
 	
 	public void terminarJuego() {
@@ -54,4 +74,30 @@ public class Ventana extends JFrame {
 		Ventana ven = new Ventana();
 		ven.setVisible(true);
 	}
+	
+	
+	//https://stackoverflow.com/questions/15422488/java-keybindings
+	public class ArrowAction extends AbstractAction {
+
+	    private String cmd;
+
+	    public ArrowAction(String cmd) {
+	        this.cmd = cmd;
+	    }
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {//aqui adentro van los mover
+	        if (cmd.equalsIgnoreCase("LeftArrow")) {
+	            System.out.println("The left arrow was pressed!");
+	        } else if (cmd.equalsIgnoreCase("RightArrow")) {
+	            System.out.println("The right arrow was pressed!");
+	        } else if (cmd.equalsIgnoreCase("UpArrow")) {
+	            System.out.println("The up arrow was pressed!");
+	        } else if (cmd.equalsIgnoreCase("DownArrow")) {
+	            System.out.println("The down arrow was pressed!");
+	        }
+	    }
+	}
 }
+
+

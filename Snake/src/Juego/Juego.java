@@ -126,9 +126,9 @@ public class Juego {
 	}
 	
 	public void terminarJuego() {
-		miPanelJuego.terminarJuego();
 		hiloCronometro.stop();
 		hiloCriatura.stop();
+		miVentana.terminarJuego();
 	}
 	
 	public void pasarDeNivel() {
@@ -142,7 +142,6 @@ public class Juego {
 			hCriatura.setCriatura(miCriatura);
 		}
 		else{
-			miPanelJuego.ganarJuego();
 			this.terminarJuego();
 		}
 	}

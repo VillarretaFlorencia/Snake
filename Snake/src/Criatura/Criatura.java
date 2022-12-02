@@ -25,7 +25,10 @@ public class Criatura {
 	
 	BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	Juego juego = Juego.getJuego();
+<<<<<<< HEAD
 	
+=======
+>>>>>>> e28ae1ad9a34c1191bbe4f1e8e65c816f22757bc
 	/*static final int IZQUIERDA = -1;
 	static final int DERECHA = 1;
 	static final int ARRIBA = 2;
@@ -115,5 +118,6 @@ public class Criatura {
 		miCola = null;
 		enReserva = 0;
 		miCuerpo.clear();
+		juego.terminarJuego();
 	}
 }

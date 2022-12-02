@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PanelInicial extends JPanel{
 	private JTextField ingresarNombre;
@@ -23,12 +25,27 @@ public class PanelInicial extends JPanel{
 		btnStart = new JButton("");
 		btnStart.setBounds(96, 340, 405, 33);
 		add(btnStart);
-		
+		btnStart.setEnabled(false);
+		btnStart.setOpaque(false);
 		ingresarNombre = new JTextField();
-		ingresarNombre.setText("INGRESA TU NOMBRE");
+		ingresarNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(ingresarNombre.getText().length()>0) {
+					btnStart.setEnabled(true);
+				}else {
+					btnStart.setEnabled(false);
+				}
+			}
+		});
+
 		ingresarNombre.setBounds(108, 309, 382, 20);
 		add(ingresarNombre);
 		ingresarNombre.setColumns(10);
+		
+		
+		
+		
 	}
 	
 	public JButton getStartBtn(){

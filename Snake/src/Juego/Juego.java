@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 import Bloque.*;
 import Criatura.Criatura;
+import GUI.PanelJuego;
 import GUI.PanelJuegoConRank;
 import GUI.Ventana;
 import Grilla.Grilla;
@@ -89,7 +90,7 @@ public class Juego {
 	
 	public void aumentarPuntaje(int puntaje) {
 		miJugador.aumentarPuntaje(puntaje);
-		miPanelJuego.actualizarPuntaje(puntaje);
+		miPanelJuego.actualizarPuntaje(miJugador.getPuntaje());
 	}
 	
 	public void setVentana(Ventana ventana) {
@@ -129,22 +130,13 @@ public class Juego {
 	
 	public void actualizarGrilla (Bloque bloque) {
 		Posicion pos = bloque.getPosicion(); 
-<<<<<<< HEAD
-		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
-=======
-		System.out.println(bloque.getImagen());
 		miPanelJuego.getPanelJuego().actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
->>>>>>> 5fc819cd7b9b3dac0194b77762f93560875b90e2
 	}
 	
 	public void actualizarGrilla (Transitable bloque) {
 		Posicion pos = bloque.getPosicion(); 
-<<<<<<< HEAD
-		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
-=======
-		System.out.println(bloque.getImagen());
 		miPanelJuego.getPanelJuego().actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
->>>>>>> 5fc819cd7b9b3dac0194b77762f93560875b90e2
+
 	}
 	
 	public void actualizarComestible (Transitable transitable) {

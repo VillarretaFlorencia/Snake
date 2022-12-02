@@ -27,7 +27,7 @@ public class PanelJuegoConRank extends JLayeredPane {
 		lbCronometro.setSize(111, 15);
 		add(lbCronometro, Integer.valueOf(2));
 		
-		lbPuntaje = new JLabel(textoPuntaje);
+		lbPuntaje = new JLabel(textoPuntaje + 0);
 		lbPuntaje.setForeground(Color.WHITE);
 		lbPuntaje.setLocation(305, 0);
 		lbPuntaje.setSize(80, 15);

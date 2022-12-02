@@ -59,7 +59,6 @@ public class Nivel {
 	    //obtenemos la lista con los consumibles al azar
 	    Collections.shuffle(consumibles);
 	    
-	    System.out.println("NUEVO NIVEL " + consumibles.size());
 	}
 	
 	public int getNumNivel() {return numNivel;}

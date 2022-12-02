@@ -14,8 +14,8 @@ public class HiloCronometro implements Runnable{
 	public void run () {
 		while(true) {
 			try {
+				juego.modificarTiempo(segundos);
 				Thread.sleep(1000);
-				//juego.modificarTiempo(segundos);
 				segundos++;
 			}catch (InterruptedException e) {
 				e.getMessage();

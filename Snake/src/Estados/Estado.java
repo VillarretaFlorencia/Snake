@@ -18,10 +18,10 @@ public class Estado {
 	
 	public void cambiarAspecto (String aspecto) {
 		System.out.println("ENTRE A ESTADO");
-		//criatura.setImagenCuerpo (aspecto); //?
 		this.aspecto = aspecto;
 		for (Bloque parte : criatura.getCuerpo()) {
 			parte.setImagen(aspecto);
+			System.out.println("IMAGEN EN ESTADO" + parte.getImagen());
 			juego.actualizarGrilla (parte);
 		}
 	}

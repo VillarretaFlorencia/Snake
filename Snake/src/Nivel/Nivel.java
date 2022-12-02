@@ -22,22 +22,18 @@ public class Nivel {
 	protected Grilla grilla;
 	protected int numNivel;
 	protected LinkedList<Consumible> consumibles;
-	protected LinkedList<Transitable> listaTransitables;
 	protected LevelReader levelReader;
 	protected static BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	protected static Juego juego = Juego.getJuego();
 	
 	
 	public Nivel(int numNivel) {
+		
 		this.numNivel = numNivel;
 		levelReader = new LevelReader();
 	    //generamos el nivel
 	    grilla = new Grilla (levelReader.generarGrilla(numNivel));
-	    for (int i = 0; i < grilla.getFilas(); i++) {
-	    	for (int j = 0; j < grilla.getColumnas(); j++) {
-	    		juego.actualizarGrilla(grilla.getBloque(i,j));
-    		}
-    	}
+	    
 	    
 	    //generamos los consumibles
 	    Alimento alimentoRojo = new Alimento(25, 2, bloqueGrafico.getAlimentoRojo());
@@ -51,7 +47,7 @@ public class Nivel {
 	    
 	    //generamos la lista de consumibles
 	    consumibles = new LinkedList<>();
-	    consumibles.addLast(alimentoRojo);
+	    consumibles.addFirst(alimentoRojo);
 	    consumibles.addFirst(alimentoVerde);
 	    consumibles.addFirst(alimentoNaranja);
 	    consumibles.addFirst(alimentoMorado);
@@ -62,17 +58,22 @@ public class Nivel {
 	   
 	    //obtenemos la lista con los consumibles al azar
 	    Collections.shuffle(consumibles);
+	    
+	    System.out.println("NUEVO NIVEL " + consumibles.size());
 	}
 	
 	public int getNumNivel() {return numNivel;}
 	
 	public void generarConsumibles() {
 		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
+		System.out.println("ENTRE A CONSUMIBLES " + consumibles.size());
 		if (!consumibles.isEmpty()) {		
 			Transitable transitable = levelReader.getPosibleConsumible();
 			Consumible consumible = consumibles.getFirst();
 			transitable.setConsumible(consumible);
 			consumibles.remove(consumible);
+			System.out.println("ENTRE A CONSUMIBLES elimine " + consumibles.size());
+			consumible = null;
 			juego.actualizarComestible(transitable); //pasar posicion e imagem
 		} else {
 			juego.pasarDeNivel();
@@ -85,6 +86,11 @@ public class Nivel {
 	
 	public Grilla getGrilla() {
 		return grilla;
+	}
+
+	public void limpiarNivel() {
+		grilla.vaciar();
+		consumibles = null;
 	}
 	
 	//estos ya no los usamos los deje por las dudas

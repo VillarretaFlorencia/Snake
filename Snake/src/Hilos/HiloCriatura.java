@@ -9,13 +9,15 @@ public class HiloCriatura implements Runnable{
 	}
 	
 	public void run () {
-		while(true) {
-			try {
-				Thread.sleep(200);
+		try {
+			//Thread.sleep(1000);
+			
+			while(true) {				
+				Thread.sleep(250);
 				criatura.mover();
-			}catch (InterruptedException e) {
-				e.getMessage();
 			}
+		}catch (InterruptedException e) {
+			e.getMessage();
 		}
 	}
 	

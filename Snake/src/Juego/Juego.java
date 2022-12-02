@@ -44,23 +44,34 @@ public class Juego {
 	
 	public void iniciarJuego(int numNivel, String nombre) {
 		//inicializo la ventana, nivel y jugador
-		miNivel = new Nivel(numNivel);
-		grilla = miNivel.getGrilla();
-		miJugador = new Jugador(nombre,0);
-		//creo a la snake en una ubicacion random
-		creacionCriatura();
 		
+		miJugador = new Jugador(nombre,0);
+				
 		//inicializo los hilos
 		hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
 		hiloCronometro.start();
 
 		hCriatura = new HiloCriatura();
-		hCriatura.setCriatura(miCriatura);
+		iniciar (numNivel);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
 		
 		System.out.println("manumanumanumanumanumanumanumanumanumanumanumanumanu");
+	}
+	
+	private void iniciar(int numNivel) {
+		miNivel = new Nivel(numNivel);
+		grilla = miNivel.getGrilla();
+		for (int i = 0; i < grilla.getFilas(); i++) {
+	    	for (int j = 0; j < grilla.getColumnas(); j++) {
+	    		juego.actualizarGrilla(grilla.getBloque(i,j));
+    		}
+    	}
+		//creo a la snake en una ubicacion random
+		creacionCriatura();
+		colocarConsumible();
+		hCriatura.setCriatura(miCriatura);
 	}
 	
 	public void modificarTiempo(int tiempo) {
@@ -94,8 +105,6 @@ public class Juego {
 		actualizarGrilla (cola);
 		actualizarGrilla (cuerpo);
 		actualizarGrilla (cabeza);
-		
-		System.out.println(miCriatura.getDireccion());
 	}
 	
 	public Bloque getAdyacente(int direccion, Bloque bloqueActual) {
@@ -104,29 +113,27 @@ public class Juego {
 		int x = posicion.getX();
 		int y = posicion.getY();
 		if (direccion == ARRIBA) {
-			bloqueAdyacente = grilla.getBloque(x, y - 1);
+			bloqueAdyacente = grilla.getBloque(x - 1 , y); //fila, columna
 		}
 		if (direccion == DERECHA) {
-			bloqueAdyacente = grilla.getBloque(x - 1, y);
-		}
-		if (direccion == ABAJO) {
 			bloqueAdyacente = grilla.getBloque(x, y + 1);
 		}
-		if (direccion == IZQUIERDA) {
+		if (direccion == ABAJO) {
 			bloqueAdyacente = grilla.getBloque(x + 1, y);
+		}
+		if (direccion == IZQUIERDA) {
+			bloqueAdyacente = grilla.getBloque(x, y - 1);
 		}
 		return bloqueAdyacente;
 	}
 	
 	public void actualizarGrilla (Bloque bloque) {
 		Posicion pos = bloque.getPosicion(); 
-		System.out.println(bloque.getImagen());
 		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
 	}
 	
 	public void actualizarGrilla (Transitable bloque) {
 		Posicion pos = bloque.getPosicion(); 
-		System.out.println(bloque.getImagen());
 		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
 	}
 	
@@ -136,26 +143,35 @@ public class Juego {
 	}
 	
 	public void cambiarDireccion(int direccion){
+		System.out.println("ENTRE A CAMBIA DIRECCION");
 		int direccionActual = miCriatura.getDireccion();
-		if ((direccionActual == ARRIBA || direccionActual == ABAJO) && (direccion == DERECHA || direccionActual == IZQUIERDA))
+		if (direccionActual == ARRIBA || direccionActual == ABAJO) {
+				if(direccion == DERECHA || direccion == IZQUIERDA) {
+					miCriatura.setDireccion(direccion);
+				}
+		}
+		if (direccionActual == DERECHA || direccionActual == IZQUIERDA){
+			if (direccion == ARRIBA || direccion == ABAJO) {
 			miCriatura.setDireccion(direccion);
-		if ((direccionActual == DERECHA || direccionActual == IZQUIERDA) && (direccion == ARRIBA || direccionActual == ABAJO))
-			miCriatura.setDireccion(direccion);
+			}
+		}
+		
 	}
 	
 	public void terminarJuego() {
 		hiloCronometro.stop();
 		hiloCriatura.stop();
+		miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
+		miNivel.limpiarNivel();
 		miVentana.terminarJuego();
 	}
 	
 	public void pasarDeNivel() {
 		int numNivel = miNivel.getNumNivel();
 		if (numNivel < 5) {
-			miNivel = new Nivel(numNivel + 1);
-			grilla = miNivel.getGrilla();
-			creacionCriatura();
-			hCriatura.setCriatura(miCriatura);
+			//miNivel.limpiarNivel();
+			miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
+			iniciar (miNivel.getNumNivel()+1);
 		}
 		else{
 			this.terminarJuego();

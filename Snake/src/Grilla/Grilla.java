@@ -21,4 +21,12 @@ public class Grilla {
 	public int getColumnas() {return grilla.length;}
 	
 	public int getFilas() {return grilla[0].length;}
+
+	public void vaciar() {
+		for (int i = 0; i < getFilas(); i++) {
+	    	for (int j = 0; j < getColumnas(); j++) {
+	    		grilla[i][j] = null;
+    		}
+    	}		
+	}
 }

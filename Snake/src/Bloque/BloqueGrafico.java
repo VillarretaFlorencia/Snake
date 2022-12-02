@@ -13,9 +13,9 @@ public class BloqueGrafico  {
 	private static final String alimentoMorado = "/Recursos/alimentoMorado.png"; 
 	private static final String alimentoRosa ="/Recursos/alimentoRosa.png";
 	private static final String cuerpoInicial="/Recursos/cuerpoSnake.png";
-	private static final String cuerpoAmarillo="/Recursos/cuerpoSnake.png";
-	private static final String cuerpoNegro="/Recursos/cuerpoSnake.png";
-	private static final String cuerpoBlanco="/Recursos/cuerpoSnake.png";
+	private static final String cuerpoAmarillo="/Recursos/cuerpoAmarillo.png";
+	private static final String cuerpoNegro="/Recursos/cuerpoNegro.png";
+	private static final String cuerpoBlanco="/Recursos/cuerpoBlanco.png";
 	private static final String cabeza= "/Recursos/cabezaSnake.png";
 	private static final String suelo= "/Recursos/suelo.png";
 	private static final String pared= "/Recursos/imagenPared.png";

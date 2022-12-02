@@ -47,13 +47,14 @@ public class Juego {
 		miJugador = new Jugador(nombre,0);
 		
 		//inicializo los hilos
-		HiloCronometro hCronometro = new HiloCronometro();
+		/*HiloCronometro hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
 		hiloCronometro.start();
 
 		hCriatura = new HiloCriatura();
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
+		*/
 		
 		//creo a la snake en una ubicacion random
 		creacionCriatura();

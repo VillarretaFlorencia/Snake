@@ -46,21 +46,21 @@ public class Juego {
 		miNivel = new Nivel(numNivel);
 		grilla = miNivel.getGrilla();
 		miJugador = new Jugador(nombre,0);
-
 		//creo a la snake en una ubicacion random
 		creacionCriatura();
 		
 		//inicializo los hilos
-		/*HiloCronometro hCronometro = new HiloCronometro();
+		HiloCronometro hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
+		
 		hiloCronometro.start();
 
 		hCriatura = new HiloCriatura();
 		hCriatura.setCriatura(miCriatura);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
-		*/
 		
+		System.out.println("manumanumanumanumanumanumanumanumanumanumanumanumanu");
 	}
 	
 	public void modificarTiempo(int tiempo) {

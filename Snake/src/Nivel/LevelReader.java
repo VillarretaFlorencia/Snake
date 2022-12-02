@@ -65,16 +65,16 @@ public class LevelReader {
         //leemos cada linea de izquierda a dercha
         for (int j = 0; j < linea.length(); j++) {
         	if (linea.charAt(j) == 'x') {
-        		grilla[i][j] = new Pared (i, j, bloqueGrafico.getPared());
+        		grilla[j][i] = new Pared (j, i, bloqueGrafico.getPared());
         	}
         	if (linea.charAt(j) == '#') {
-        		crearSuelo (i, j);
+        		crearSuelo (j, i);
         	}
         	if (linea.charAt(j) == '$') {
-        		posiblesCriatura.add(crearSuelo (i, j));
+        		posiblesCriatura.add(crearSuelo (j, i));
         	}
         	if (linea.charAt(j) == '@') {
-        		posiblesComestibles.add(crearSuelo (i, j));
+        		posiblesComestibles.add(crearSuelo (j, i));
         	}
         }
         i++;

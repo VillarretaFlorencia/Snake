@@ -47,6 +47,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 		juego.iniciarJuego(n, name);
 		//nivel.setPanelJuego (this);
 		
+		/*
 		infoPane = new JPanel(new BorderLayout());
 		infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			
@@ -60,6 +61,7 @@ public class PanelJuego extends JPanel implements KeyListener{
 		infoPane.add(lbPuntaje, BorderLayout.EAST); 
 		
 		this.add(infoPane, BorderLayout.NORTH);
+		*/
 		//System.out.println(" +++++++++++ " + hiloCriatura.isAlive());
 	}
 	

@@ -18,13 +18,13 @@ public class VisitorCriatura extends Visitor{
 	
 	public void visitar(Pared pared) {
 		criatura.morir();
-		Juego.terminar();
+		juego.terminarJuego();
 	}
 
 	public void visitar(Transitable adyacente) {
 		if (adyacente.getOcupado()) {
 			criatura.morir();
-			Juego.terminar();
+			juego.terminarJuego();
 		}
 		else {
 			adyacente.ocupar(criatura.getEstado().getImagen());
@@ -44,14 +44,14 @@ public class VisitorCriatura extends Visitor{
 	
 	public void visitar (Alimento alimento) {
 		criatura.modificarReserva (alimento.getTamanio());
-		juego.aumentarPunaje(alimento.getPuntaje());
+		juego.aumentarPuntaje(alimento.getPuntaje());
 		juego.colocarConsumible();
 	}
 	
 	public void visitar (PowerUp powerUp) {
 		criatura.modificarReserva (powerUp.getTamanio());
 		criatura.getEstado().cambiarAspecto (powerUp.getAspecto());
-		juego.aumentarPunaje(powerUp.getPuntaje());
+		juego.aumentarPuntaje(powerUp.getPuntaje());
 		juego.colocarConsumible();
 	}
 

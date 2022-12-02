@@ -75,7 +75,7 @@ public class Nivel {
 			consumibles.remove(consumible);
 			juego.actualizarComestible(transitable); //pasar posicion e imagem
 		} else {
-			juego.pasarNivel();
+			juego.pasarDeNivel();
 		}
 	}
 	

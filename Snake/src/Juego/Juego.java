@@ -36,7 +36,6 @@ public class Juego {
 	
 	protected BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	private static Juego juego = new Juego();
-	protected static LevelReader levelReader = LevelReader.getLevelReader();
 	  
 	public static Juego getJuego() {
 		return juego;
@@ -84,7 +83,7 @@ public class Juego {
 
 	private void creacionCriatura() {
 		int direccion = (int) ((Math.random() * 4) + 1);
-		Transitable cola = levelReader.getPosibleCriatura();
+		Transitable cola = miNivel.getPosibleCriatura();
 		Transitable cuerpo = (Transitable) getAdyacente(direccion, cola);
 		Transitable cabeza = (Transitable) getAdyacente(direccion, cuerpo);
 		miCriatura = new Criatura(direccion, cabeza, cuerpo, cola, bloqueGrafico.getCuerpo());
@@ -92,17 +91,20 @@ public class Juego {
 	
 	public Bloque getAdyacente(int direccion, Bloque bloqueActual) {
 		Bloque bloqueAdyacente = null;
+		Posicion posicion = bloqueActual.getPosicion();
+		int x = posicion.getX();
+		int y = posicion.getY();
 		if (direccion == ARRIBA) {
-			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX(), bloqueActual.getPosicion().getY() -1);
+			bloqueAdyacente = grilla.getBloque(x, y - 1);
 		}
 		if (direccion == DERECHA) {
-			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX() -1, bloqueActual.getPosicion().getY());
+			bloqueAdyacente = grilla.getBloque(x - 1, y);
 		}
 		if (direccion == ABAJO) {
-			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX(), bloqueActual.getPosicion().getY() +1);
+			bloqueAdyacente = grilla.getBloque(x, y + 1);
 		}
 		if (direccion == IZQUIERDA) {
-			bloqueAdyacente = grilla.getBloque(bloqueActual.getPosicion().getX() +1, bloqueActual.getPosicion().getY());
+			bloqueAdyacente = grilla.getBloque(x + 1, y);
 		}
 		return bloqueAdyacente;
 	}
@@ -119,9 +121,9 @@ public class Juego {
 	
 	public void cambiarDireccion(int direccion){
 		int direccionActual = miCriatura.getDireccion();
-		if ((direccionActual == 1 || direccionActual == 3) && (direccion == 2 || direccionActual == 4))
+		if ((direccionActual == ARRIBA || direccionActual == ABAJO) && (direccion == DERECHA || direccionActual == IZQUIERDA))
 			miCriatura.setDireccion(direccion);
-		if ((direccionActual == 2 || direccionActual == 4) && (direccion == 1 || direccionActual == 3))
+		if ((direccionActual == DERECHA || direccionActual == IZQUIERDA) && (direccion == ARRIBA || direccionActual == ABAJO))
 			miCriatura.setDireccion(direccion);
 	}
 	
@@ -132,10 +134,7 @@ public class Juego {
 	}
 	
 	public void pasarDeNivel() {
-		hiloCronometro.stop();
-		hiloCriatura.stop();
-		int numNivel = miNivel.getNivel();
-		
+		int numNivel = miNivel.getNumNivel();
 		if (numNivel < 5) {
 			miNivel = new Nivel(numNivel + 1);
 			creacionCriatura();

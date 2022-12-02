@@ -24,7 +24,7 @@ public class Ventana extends JFrame {
 	
 	//Paneles <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	PanelInicial panelInicial = new PanelInicial();
-	PanelJuego panelJuego = new PanelJuego();
+	PanelJuegoConRank panelJuego = new PanelJuegoConRank();
 	PanelRanking panelRanking = new PanelRanking();
 	
 	
@@ -43,12 +43,12 @@ public class Ventana extends JFrame {
 	    getContentPane().add(panelInicial, START);
 	    getContentPane().add(panelJuego,JUEGO);
 	    getContentPane().add(panelRanking,RANKING);
-	    juego.setPanelJuego(panelJuego);
+	    juego.setPanelJuego(panelJuego.getPanelJuego());
 	    panelInicial.getStartBtn().addActionListener(
 	            new ActionListener() { //tomamos el boton del start
 	                public void actionPerformed(ActionEvent e) { //al momento de presionar el boton
 	                  CardLayout c1 = (CardLayout) (getContentPane().getLayout()); //se cambia toma el panel
-	                  panelJuego.iniciar(1, panelInicial.getNombre().getText());
+	                  panelJuego.getPanelJuego().iniciar(1, panelInicial.getNombre().getText());
 	                  c1.show(getContentPane(), JUEGO); // y lo cambiamos en el contentPane
 	                }
 	              }

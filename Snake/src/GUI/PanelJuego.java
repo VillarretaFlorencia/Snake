@@ -20,9 +20,7 @@ public class PanelJuego extends JPanel {
 		
 	private JLabel[][] label = new JLabel[20][20];
 	
-	private JPanel infoPane;
-	private JLabel lbNivel;
-	private JLabel lbPuntaje;
+	
 	private JLabel lbCronometro;
 	
 

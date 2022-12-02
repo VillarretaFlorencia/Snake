@@ -88,16 +88,12 @@ public class Ventana extends JFrame {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {//aqui adentro van los mover
 	        if (cmd.equalsIgnoreCase("LeftArrow")) {
-	        	System.out.println("OOOOO");
 	            juego.cambiarDireccion(4);
 	        } else if (cmd.equalsIgnoreCase("RightArrow")) {
-	        	System.out.println("OOOOO");
 	        	juego.cambiarDireccion(2);
 	        } else if (cmd.equalsIgnoreCase("UpArrow")) {
-	        	System.out.println("OOOOO");
 	        	juego.cambiarDireccion(1);
 	        } else if (cmd.equalsIgnoreCase("DownArrow")) {
-	        	System.out.println("OOOOO");
 	            juego.cambiarDireccion(3);
 	        }
 	    }

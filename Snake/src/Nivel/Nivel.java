@@ -25,7 +25,7 @@ public class Nivel {
 	protected LevelReader levelReader;
 	protected static BloqueGrafico bloqueGrafico = BloqueGrafico.getBloqueGrafico();
 	protected static Juego juego = Juego.getJuego();
-	protected Consumible consumible;
+	protected Consumible ultimoConsumible;
 	
 	
 	public Nivel(int numNivel) {
@@ -34,7 +34,11 @@ public class Nivel {
 		levelReader = new LevelReader();
 	    //generamos el nivel
 	    grilla = new Grilla (levelReader.generarGrilla(numNivel));
-	    
+	    for (int i = 0; i < grilla.getFilas(); i++) {
+	    	for (int j = 0; j < grilla.getColumnas(); j++) {
+	    		juego.actualizarGrilla(grilla.getBloque(i,j));
+    		}
+    	}
 	    
 	    //generamos los consumibles
 	    Alimento alimentoRojo = new Alimento(25, 2, bloqueGrafico.getAlimentoRojo());
@@ -59,24 +63,27 @@ public class Nivel {
 	   
 	    //obtenemos la lista con los consumibles al azar
 	    Collections.shuffle(consumibles);
-	    consumible = consumibles.getFirst();
+	    ultimoConsumible = consumibles.getLast();
 	}
 	
 	public int getNumNivel() {return numNivel;}
 	
 	public void generarConsumibles() {
 		//ubica un cosumible en una posicion valida de la grilla y lo remueve de la lista de consumibles
-		System.out.println("ENTRE A CONSUMIBLES " + consumibles.size());
-		if (!consumibles.isEmpty() && consumible.getConsumido()) {	
-			Transitable transitable = levelReader.getPosibleConsumible();;
-			while(transitable.getOcupado()) {
-			transitable = levelReader.getPosibleConsumible();
-			}
-			Consumible consumible = consumibles.getFirst();
-			transitable.setConsumible(consumible);
-			consumibles.remove(consumible);
-			System.out.println("ENTRE A CONSUMIBLES elimine " + consumibles.size());
-			juego.actualizarComestible(transitable); //pasar posicion e imagem
+		System.out.println("CONSUMIDO: " + ultimoConsumible.getConsumido());
+		if (!consumibles.isEmpty() && !ultimoConsumible.getConsumido()){
+			System.out.println("ENTRE A CONSUMIBLES " + consumibles.size());
+				//if (consumible.getConsumido()) {	
+					Transitable transitable = levelReader.getPosibleConsumible();
+					while(transitable.getOcupado()) {
+						transitable = levelReader.getPosibleConsumible();
+					}
+					Consumible consumible = consumibles.getFirst();
+					transitable.setConsumible(consumible);
+					consumibles.remove(consumible);					
+					System.out.println("ENTRE A CONSUMIBLES elimine " + consumibles.size());
+					juego.actualizarComestible(transitable); //pasar posicion e imagem
+				//}
 		} else {
 			juego.pasarDeNivel();
 		}
@@ -92,6 +99,7 @@ public class Nivel {
 
 	public void limpiarNivel() {
 		grilla.vaciar();
+		consumibles.clear();
 	}
 }
 

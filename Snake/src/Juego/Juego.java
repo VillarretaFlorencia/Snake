@@ -47,15 +47,9 @@ public class Juego {
 		//inicializo la ventana, nivel y jugador
 		
 		miJugador = new Jugador(nombre,0);
-<<<<<<< HEAD
-		
-=======
-				
->>>>>>> eea0fbd38460bb70ce7eda477b27cf6e0aa36eda
 		//inicializo los hilos
 		hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
-		iniciar (numNivel);
 		hiloCronometro.start();
 		
 		hCriatura = new HiloCriatura();
@@ -67,11 +61,7 @@ public class Juego {
 	private void iniciar(int numNivel) {
 		miNivel = new Nivel(numNivel);
 		grilla = miNivel.getGrilla();
-		for (int i = 0; i < grilla.getFilas(); i++) {
-	    	for (int j = 0; j < grilla.getColumnas(); j++) {
-	    		juego.actualizarGrilla(grilla.getBloque(i,j));
-    		}
-    	}
+		
 		System.out.println("ENTRE A INICIAR" + numNivel);
 		//creo a la snake en una ubicacion random
 		creacionCriatura();
@@ -168,7 +158,7 @@ public class Juego {
 	public void terminarJuego() {
 		hiloCronometro.stop();
 		hiloCriatura.stop();
-		miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
+		//miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
 		miNivel.limpiarNivel();
 		miNivel = null;
 		miCriatura = null;
@@ -179,8 +169,8 @@ public class Juego {
 		int numNivel = miNivel.getNumNivel();
 		if (numNivel < 5) {
 			//hiloCriatura.stop();
-			//miNivel.limpiarNivel();
-			miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
+			miNivel.limpiarNivel();
+			//miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
 			iniciar (miNivel.getNumNivel()+1);
 		}
 		else{

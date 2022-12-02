@@ -94,12 +94,10 @@ public class Criatura {
 	}
 		
 	public void morir () {
-		System.out.println("MORI");
 		for (Transitable parte: miCuerpo) {
 			parte.desocupar();
 			juego.actualizarGrilla(parte);
 		}
-		System.out.println("CABEZA" + miCabeza.getImagen());
 		miCabeza = null;
 		miCola = null;
 		enReserva = 0;

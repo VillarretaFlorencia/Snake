@@ -14,20 +14,21 @@ public class Jugador implements Comparable<Jugador>{
         this.puntaje = puntaje;
     }
     
-    public void aumentarPuntaje(int puntaje) {
-        this.puntaje += puntaje; 
-        System.out.println("puntaje: "+puntaje);
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    public int getPuntaje() {
+        return puntaje;
+    }
+    
     public String getNombre() {
         return nombre;
     }
-    public int getPuntaje() {
-        return puntaje;
+    
+    public void aumentarPuntaje(int puntaje) {
+        this.puntaje += puntaje; 
+        System.out.println("puntaje: "+puntaje);
     }
     
     public void copy(Jugador jugador) {

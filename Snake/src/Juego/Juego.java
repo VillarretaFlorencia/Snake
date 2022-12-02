@@ -43,6 +43,10 @@ public class Juego {
 		return juego;
 	}
 	
+	public Jugador getJugador() {
+		return miJugador;
+	}
+	
 	public void iniciarJuego(int numNivel, String nombre) {
 		//inicializo la ventana, nivel y jugador
 		
@@ -188,8 +192,4 @@ public class Juego {
 			this.terminarJuego();
 		}
 	}*/
-	
-	public Jugador getJugador() {
-		return miJugador;
-	}
 }

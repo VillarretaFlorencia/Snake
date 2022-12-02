@@ -43,7 +43,7 @@ public class Ventana extends JFrame {
 	    getContentPane().add(panelInicial, START);
 	    getContentPane().add(panelJuego,JUEGO);
 	    getContentPane().add(panelRanking,RANKING);
-	    juego.setPanelJuego(panelJuego.getPanelJuego());
+	    juego.setPanelJuego(panelJuego);
 	    panelInicial.getStartBtn().addActionListener(
 	            new ActionListener() { //tomamos el boton del start
 	                public void actionPerformed(ActionEvent e) { //al momento de presionar el boton

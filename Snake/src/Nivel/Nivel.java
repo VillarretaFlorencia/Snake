@@ -72,7 +72,6 @@ public class Nivel {
 			transitable.setConsumible(consumible);
 			consumibles.remove(consumible);
 			System.out.println("ENTRE A CONSUMIBLES elimine " + consumibles.size());
-			consumible = null;
 			juego.actualizarComestible(transitable); //pasar posicion e imagem
 		} else {
 			juego.pasarDeNivel();
@@ -89,7 +88,6 @@ public class Nivel {
 
 	public void limpiarNivel() {
 		grilla.vaciar();
-		consumibles = null;
 	}
 	
 	//estos ya no los usamos los deje por las dudas

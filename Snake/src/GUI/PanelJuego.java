@@ -43,24 +43,6 @@ public class PanelJuego extends JPanel {
 	
 	public void iniciar(int n, String name) {
 		juego.iniciarJuego(n, name);
-		//nivel.setPanelJuego (this);
-		
-		/*
-		infoPane = new JPanel(new BorderLayout());
-		infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			
-		lbNivel = new JLabel("Nivel : " + n);
-		infoPane.add(lbNivel, BorderLayout.WEST); 
-
-		lbCronometro = new JLabel("Tiempo: ");
-		infoPane.add(lbCronometro, BorderLayout.CENTER);
-		
-		lbPuntaje = new JLabel("Puntaje: 0");
-		infoPane.add(lbPuntaje, BorderLayout.EAST); 
-		
-		this.add(infoPane, BorderLayout.NORTH);
-		*/
-		//System.out.println(" +++++++++++ " + hiloCriatura.isAlive());
 	}
 	
 	public void actualizarLabel (int x, int y, String imagen) {

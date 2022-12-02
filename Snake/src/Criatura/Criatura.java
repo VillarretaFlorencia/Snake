@@ -97,60 +97,12 @@ public class Criatura {
 		miCuerpo.remove(miCuerpo.getLast());
 		miCola = miCuerpo.getLast();
 	}
-	
-	/*public void mover (int direccion){
-		miDireccion = direccion;
-		int xCabeza =  cabeza.getPosicion.getX();
-		int yCabeza =  cabeza.getPosicion.getY();
-		Bloque adyacente = null;
-		//Posicion posColaActual = cola.getPosicion();
-		Transitable nuevaCola = new Transitable (cola.getPosicion().getX(), cola.getPosicion().getY());
-		if (miDireccion == IZQUIERDA) {
-			adyacente = juego.getBloque(xCabeza - 1, yCabeza);
-			desplazar('x', -1);
-		}
-		if (miDireccion == DERECHA) {
-			adyacente = juego.getBloque(xCabeza + 1, yCabeza);
-			desplazar('x', 1);
-		}
-		if (miDireccion == ARRIBA) {
-			adyacente = juego.getBloque(xCabeza, yCabeza + 1);
-			desplazar('y', 1);
-		}
-		if (miDireccion == ARRIBA) {
-			adyacente = juego.getBloque(xCabeza, yCabeza - 1);
-			desplazar('y', -1);
-		}// esto creo que lo hace el jueo lo de darle directamente el adyacente, consultando la cabeza
 		
-		if (enReserva < 0) {
-			enReserva --;
-			miCuerpo.addLast(nuevaCola);
-			nuevaCola.ocupar(); la cola ya estaba en oupada
-		}
-		else cola.desocupar();
-		
-		miVisitor.visit(adyacente);
-	}*/
-	
 	public void mover () {
-		System.out.println("MOVER adyacente-> " + Juego.getJuego().getAdyacente(miDireccion, miCabeza).getImagen());
 		Bloque adyacente = Juego.getJuego().getAdyacente(miDireccion, miCabeza);
 		adyacente.aceptar(miVisitor);
 	}
-	
-	/*private void desplazar (char coordenada, int movimiento) {
-		for (Transitable parte: miCuerpo) {
-			Posicion posicion = parte.getPosicion();
-			int x = posicion.getX();
-			if (coordenada == 'x')
-				posicion.setX(x + movimiento);
-			if (coordenada == 'y')
-				posicion.setY(posicion.getY() + movimiento);
-			parte.ocupar();
-		}
-	}*/
-	
-	
+		
 	public void morir () {
 		System.out.println("MORI");
 		for (Transitable parte: miCuerpo) {

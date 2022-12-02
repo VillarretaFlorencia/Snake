@@ -21,7 +21,6 @@ public class Estado {
 		this.aspecto = aspecto;
 		for (Bloque parte : criatura.getCuerpo()) {
 			parte.setImagen(aspecto);
-			System.out.println("IMAGEN EN ESTADO" + parte.getImagen());
 			juego.actualizarGrilla (parte);
 		}
 	}

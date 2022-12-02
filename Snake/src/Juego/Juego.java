@@ -47,18 +47,15 @@ public class Juego {
 		//inicializo la ventana, nivel y jugador
 		
 		miJugador = new Jugador(nombre,0);
-				
+		iniciar (numNivel);		
 		//inicializo los hilos
 		hCronometro = new HiloCronometro();
 		hiloCronometro = new Thread(hCronometro);
 		hiloCronometro.start();
-
+		
 		hCriatura = new HiloCriatura();
-		iniciar (numNivel);
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
-		
-		System.out.println("manumanumanumanumanumanumanumanumanumanumanumanumanu");
 	}
 	
 	private void iniciar(int numNivel) {
@@ -69,33 +66,14 @@ public class Juego {
 	    		juego.actualizarGrilla(grilla.getBloque(i,j));
     		}
     	}
+		System.out.println("ENTRE A INICIAR" + numNivel);
 		//creo a la snake en una ubicacion random
 		creacionCriatura();
 		colocarConsumible();
 		hCriatura.setCriatura(miCriatura);
 	}
 	
-	public void modificarTiempo(int tiempo) {
-		miTiempo = tiempo;
-		miPanelJuego.actualizarTiempo(tiempo);
-	}
 	
-	public void colocarConsumible() {
-		miNivel.generarConsumibles();
-	}
-	
-	public void setPanelJuego(PanelJuegoConRank panelJuego) {
-		miPanelJuego = panelJuego;
-	}
-	
-	public void aumentarPuntaje(int puntaje) {
-		miJugador.aumentarPuntaje(puntaje);
-		miPanelJuego.actualizarPuntaje(miJugador.getPuntaje());
-	}
-	
-	public void setVentana(Ventana ventana) {
-		miVentana = ventana;
-	}
 
 	private void creacionCriatura() {
 		int direccion = (int) ((Math.random() * 4) + 1);
@@ -128,6 +106,28 @@ public class Juego {
 		return bloqueAdyacente;
 	}
 	
+	public void modificarTiempo(int tiempo) {
+		miTiempo = tiempo;
+		miPanelJuego.actualizarTiempo(tiempo);
+	}
+	
+	public void colocarConsumible() {
+		miNivel.generarConsumibles();
+	}
+	
+	public void setPanelJuego(PanelJuegoConRank panelJuego) {
+		miPanelJuego = panelJuego;
+	}
+	
+	public void aumentarPuntaje(int puntaje) {
+		miJugador.aumentarPuntaje(puntaje);
+		miPanelJuego.actualizarPuntaje(miJugador.getPuntaje());
+	}
+	
+	public void setVentana(Ventana ventana) {
+		miVentana = ventana;
+	}
+	
 	public void actualizarGrilla (Bloque bloque) {
 		Posicion pos = bloque.getPosicion(); 
 		miPanelJuego.getPanelJuego().actualizarLabel(pos.getX(), pos.getY(), bloque.getImagen());	
@@ -145,7 +145,6 @@ public class Juego {
 	}
 	
 	public void cambiarDireccion(int direccion){
-		System.out.println("ENTRE A CAMBIA DIRECCION");
 		int direccionActual = miCriatura.getDireccion();
 		if (direccionActual == ARRIBA || direccionActual == ABAJO) {
 				if(direccion == DERECHA || direccion == IZQUIERDA) {
@@ -165,12 +164,15 @@ public class Juego {
 		hiloCriatura.stop();
 		miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
 		miNivel.limpiarNivel();
+		miNivel = null;
+		miCriatura = null;
 		miVentana.terminarJuego();
 	}
 	
 	public void pasarDeNivel() {
 		int numNivel = miNivel.getNumNivel();
 		if (numNivel < 5) {
+			//hiloCriatura.stop();
 			//miNivel.limpiarNivel();
 			miCriatura.getEstado().cambiarAspecto(bloqueGrafico.getSuelo());
 			iniciar (miNivel.getNumNivel()+1);

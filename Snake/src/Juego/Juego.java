@@ -23,12 +23,14 @@ public class Juego {
 	static final int IZQUIERDA = 4;
 	
 	protected Nivel miNivel;
-	protected Ventana miVentana;
 	protected Grilla grilla;
 	protected Jugador miJugador;
 	protected Criatura miCriatura;
 	protected PanelJuego miPanelJuego;
 	protected int miTiempo;
+	protected HiloCriatura hCriatura;
+	protected Ventana miVentana;
+	
 	Thread hiloCronometro;
 	Thread hiloCriatura;
 	
@@ -39,10 +41,9 @@ public class Juego {
 	public static Juego getJuego() {
 		return juego;
 	}
-
+	
 	public void iniciarJuego(int numNivel, String nombre) {
 		//inicializo la ventana, nivel y jugador
-		miVentana = new Ventana();
 		miNivel = new Nivel(numNivel);
 		miJugador = new Jugador(nombre,0);
 		
@@ -51,7 +52,7 @@ public class Juego {
 		hiloCronometro = new Thread(hCronometro);
 		hiloCronometro.start();
 
-		HiloCriatura hCriatura = new HiloCriatura();
+		hCriatura = new HiloCriatura();
 		hiloCriatura = new Thread(hCriatura);
 		hiloCriatura.start();
 		
@@ -75,6 +76,10 @@ public class Juego {
 	public void aumentarPuntaje(int puntaje) {
 		miJugador.aumentarPuntaje(puntaje);
 		miPanelJuego.actualizarPuntaje(puntaje);
+	}
+	
+	public void setVentana(Ventana ventana) {
+		miVentana = ventana;
 	}
 
 	private void creacionCriatura() {
@@ -110,5 +115,39 @@ public class Juego {
 	public void actualizarComestible (Transitable transitable) {
 		Posicion pos = transitable.getPosicion(); 
 		miPanelJuego.actualizarLabel(pos.getX(), pos.getY(), transitable.getConsumible().getImagen());	
+	}
+	
+	public void cambiarDireccion(int direccion){
+		int direccionActual = miCriatura.getDireccion();
+		if ((direccionActual == 1 || direccionActual == 3) && (direccion == 2 || direccionActual == 4))
+			miCriatura.setDireccion(direccion);
+		if ((direccionActual == 2 || direccionActual == 4) && (direccion == 1 || direccionActual == 3))
+			miCriatura.setDireccion(direccion);
+	}
+	
+	public void terminarJuego() {
+		miPanelJuego.terminarJuego();
+		hiloCronometro.stop();
+		hiloCriatura.stop();
+	}
+	
+	public void pasarDeNivel() {
+		hiloCronometro.stop();
+		hiloCriatura.stop();
+		int numNivel = miNivel.getNivel();
+		
+		if (numNivel < 5) {
+			miNivel = new Nivel(numNivel + 1);
+			creacionCriatura();
+			hCriatura.setCriatura(miCriatura);
+		}
+		else{
+			miPanelJuego.ganarJuego();
+			this.terminarJuego();
+		}
+	}
+	
+	public Jugador getJugador() {
+		return miJugador;
 	}
 }
